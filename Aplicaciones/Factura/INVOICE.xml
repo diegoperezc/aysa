@@ -1,0 +1,1365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<presentation apphelp="com.ibm.mbs.doc,invoice/c_invoices_application.html" beanclass="psdi.webclient.beans.invoice.InvoiceAppBean" id="invoice" ismobile="false" mboname="INVOICE" resultstableid="results_showlist" version="6.2.3" viewport="1222x704">
+	<page id="mainrec">
+		<include controltoclone="pageHeader" id="INCLUDE-pageHeader"/>
+		<clientarea id="clientarea">
+			<tabgroup id="maintabs" style="form">
+				<tab default="true" id="results" label="Lista" type="list">
+					<menubar event="search" id="actiontoolbar" sourcemethod="getAppSearchOptions"/>
+					<table datasrc="results_showlist" id="results_showlist" inputmode="readonly" label="Facturas" mboname="INVOICE" selectmode="multiple">
+						<tablebody displayrowsperpage="20" filterable="true" filterexpanded="true" id="results_showlist_tablebody">
+							<tablecol dataattribute="invoicenum" filterable="false" id="results_showlist_tablebody_1" mxevent="toggleselectrow" mxevent_desc="Seleccionar fila {0}" sortable="false" type="event"/>
+							<tablecol dataattribute="invoicenum" id="results_showlist_tablebody_2" mxevent="selectrecord" mxevent_desc="Ir a %1" type="link"/>
+							<tablecol dataattribute="en_invoicenum" filterable="true" id="results_showlist_tablebody_3" showfilterfield="true"/>
+							<tablecol dataattribute="EN_CUENTADISTRI" id="1484573447820" label="Nro cuenta / Código CAMMESA"/>
+							<tablecol dataattribute="EN2_TIPO_ENERGIA" id="1538764742701" lookup="VALUELIST"/>
+							<tablecol dataattribute="VENDOR" id="1484575080771" label="Distribuidora"/>
+							<tablecol dataattribute="EN_TARIFASUM.ALNVALUE" filterable="true" id="1498073591196" label="Tipo de factura" showfilterfield="true" sigoption="ENE" sortable="true" width="70"/>
+							<tablecol dataattribute="EN_PERIODO_ACTUAL" id="1484573450675"/>
+							<tablecol dataattribute="ENTERDATE" id="1531750796821" label="Fecha de carga" lookup="datelookup"/>
+							<tablecol dataattribute="AY_EN_SUMINISTRO.EN2_CRE.alnvalue" id="1531751471758" label="CRE" width="70"/>
+							<tablecol dataattribute="AY_EN_SUMINISTRO.EN2_CRf.ALNVALUE" id="1531751458148" label="CRF" width="70"/>
+							<tablecol dataattribute="description" id="1474998906899"/>
+							<tablecol dataattribute="status" id="results_showlist_tablebody_4" linkedcontrolid="qbe_grid2_1_1_grid3_4"/>
+							<tablecol dataattribute="siteid" id="results_showlist_tablebody_7" linkedcontrolid="qbe_grid2_1_1_grid3_3"/>
+							<tablecol filterable="false" id="results_bookmark" mxevent="BOOKMARK" mxevent_desc="Agregar a marcadores" mxevent_icon="btn_addtobookmarks.gif" sortable="false" type="event"/>
+						</tablebody>
+					</table>
+				</tab>
+				<tab id="1469112696047" label="Energía" sigoption="EN_FACTURA" type="insert">
+					<section border="true" id="1469112696063">
+						<sectionrow id="14691126960632">
+							<sectioncol id="1469112696078">
+								<section id="1469112696094">
+									<multiparttextbox dataattribute="invoicenum" descdataattribute="description" id="1469112696110" inputmode="readonly"/>
+									<textbox dataattribute="en_invoicenum" id="1474997226180" width="140"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="14691126961102">
+								<section id="1469112696125">
+									<textbox dataattribute="siteid" id="1469112696141"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="14691126961412">
+								<section id="1469112696156">
+									<textbox dataattribute="documenttype" id="14691126961562" inputmode="readonly"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="1469112696172">
+								<section id="14691126961722">
+									<textbox dataattribute="status" id="1469112696188"/>
+									<attachments id="14691126961882"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<section id="1469112696203" label="Proveedor">
+						<sectionrow id="14691126962032">
+							<sectioncol id="1469112696219">
+								<textbox dataattribute="VENDOR" id="14691126962192" inputmode="readonly" label="Distribuidora"/>
+							</sectioncol>
+							<sectioncol id="1469112696234">
+								<textbox dataattribute="EN_CUENTADISTRI" id="14691126962342" inputmode="required" label="Número de cuenta distribuidora / Código CAMMESA" lookup="locationstype" width="140"/>
+							</sectioncol>
+							<sectioncol id="1538764854890">
+								<textbox dataattribute="EN_SUMINISTRO" id="14691126962502" inputmode="readonly"/>
+							</sectioncol>
+							<sectioncol id="1469112696250">
+								<textbox dataattribute="EN2_TIPO_ENERGIA" id="1538764870797" inputmode="readonly" smartfilloff="true"/>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<section id="AY_EN_SECC_INFORMACION_SUMINISTRO" label="Información del suministro Actual">
+						<sectionrow id="AY_EN_FIL_INFORMACION_SUMINISTRO_1">
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_1">
+								<textbox dataattribute="AY_EN_SUMINISTRO.DESCRIPTION" id="AY_EN_CAMPO_INFORMACION_SUMINISTRO_1" inputmode="readonly" label="Denominación"/>
+							</sectioncol>
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_2">
+								<textbox dataattribute="EN_TARIFASUM.ALNVALUE" id="AY_EN_CAMPO_INFORMACION_SUMINISTRO_2" inputmode="readonly" label="Tarifa" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_3">
+								<textbox dataattribute="EN_MEDIOPAGOSUM.ALNVALUE" id="AY_EN_CAMPO_INFORMACION_SUMINISTRO_3" inputmode="readonly" label="Medio de pago" size="20"/>
+							</sectioncol>
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_4">
+								<textbox dataattribute="EN_TIPOTENDIONSUM.ALNVALUE" id="AY_EN_CAMPO_INFORMACION_SUMINISTRO_4" inputmode="readonly" label="Tipo de tensión" size="10"/>
+							</sectioncol>
+						</sectionrow>
+						<sectionrow id="AY_EN_FIL_INFORMACION_SUMINISTRO_2">
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_5">
+								<textbox dataattribute="EN_TENSIONSUM.ALNVALUE" id="AY_EN_CAMPO_INFORMACION_SUMINISTRO_5" inputmode="readonly" label="Tensión" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_6">
+								<textbox dataattribute="EN_GUMA_GUME.ALNVALUE" id="AY_EN_CAMPO_INFORMACION_SUMINISTRO_6" inputmode="readonly" label="GUMA / GUME" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_7">
+								<textbox dataattribute="EN_DIRECTA_PEAJE.ALNVALUE" id="AY_EN_CAMPO_INFORMACION_SUMINISTRO_7" inputmode="readonly" label="Directa / Peaje" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_8">
+								<textbox dataattribute="AY_EN_SUMINISTRO.SERVICEADDRESS.EN_PARTIDO.DESCRIPTION" id="AY_EN_CAMPO_INFORMACION_SUMINISTRO_8" inputmode="readonly" label="Partido"/>
+							</sectioncol>
+						</sectionrow>
+						<sectionrow id="AY_EN2_FIL_INFORMACION_SUMINISTRO_3">
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_9">
+								<textbox dataattribute="AY_EN_SUMINISTRO.EN_PROCESO.ALNVALUE" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_9" inputmode="readonly" label="Proceso" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_10">
+								<textbox dataattribute="AY_EN_SUMINISTRO.EN_SUBPROCESO.ALNVALUE" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_10" inputmode="readonly" label="SubProceso" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_11">
+								<textbox dataattribute="AY_EN_SUMINISTRO.EN2_SISTEMA.ALNVALUE" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_11" inputmode="readonly" label="Sistema" size="10"/>
+							</sectioncol>
+						</sectionrow>
+						<sectionrow id="AY_EN2_FIL_INFORMACION_SUMINISTRO_4">
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_12">
+								<textbox dataattribute="AY_EN_SUMINISTRO.EN2_CRE.ALNVALUE" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_12" inputmode="readonly" label="CRE" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_13">
+								<textbox dataattribute="AY_EN_SUMINISTRO.EN2_CRF.ALNVALUE" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_13" inputmode="readonly" label="CRF" size="10"/>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<section id="AY_EN_SECC_INFORMACION_SUMINISTRO_APROBADO" label="Información del suministro en estado Aprobado">
+						<sectionrow id="AY_EN_FIL_INFORMACION_SUMINISTRO_A2">
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_A1">
+								<textbox dataattribute="EN_TARIFA" id="1690395682218" inputmode="readonly" label="Tarifa" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_A5">
+								<textbox dataattribute="EN_GUMA_GUME" id="1690395700892" inputmode="readonly" label="GUMA / GUME" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_A6">
+								<textbox dataattribute="EN_DIRECTA_PEAJE" id="1690395730670" inputmode="readonly" label="Directa / Peaje" size="10"/>
+							</sectioncol>
+						</sectionrow>
+						<sectionrow id="AY_EN2_FIL_INFORMACION_SUMINISTRO_A3">
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_A9">
+								<textbox dataattribute="EN_PROCESO" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_A9" inputmode="readonly" label="Proceso" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_A10">
+								<textbox dataattribute="EN_SUBPROCESO" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_A10" inputmode="readonly" label="SubProceso" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_A11">
+								<textbox dataattribute="EN_SISTEMA" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_A11" inputmode="readonly" label="Sistema" size="10"/>
+							</sectioncol>
+						</sectionrow>
+						<sectionrow id="AY_EN2_FIL_INFORMACION_SUMINISTRO_A4">
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_A12">
+								<textbox dataattribute="EN_CRE" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_A12" inputmode="readonly" label="CRE" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN2_COL_INFORMACION_SUMINISTRO_A13">
+								<textbox dataattribute="EN_CRF" id="AY_EN2_CAMPO_INFORMACION_SUMINISTRO_A13" inputmode="readonly" label="CRF" size="10"/>
+							</sectioncol>
+							<sectioncol id="AY_EN_COL_INFORMACION_SUMINISTRO_c13"/>
+						</sectionrow>
+					</section>
+					<section id="1469112696266">
+						<sectionrow id="14691126962662">
+							<sectioncol id="1469112696281">
+								<section id="14691126962812" label="Detalles de factura">
+									<sectionrow id="1469113124956">
+										<sectioncol id="1469113156671">
+											<textbox dataattribute="contractrefnum" id="14691126964532" inputmode="readonly" label="Contrato" lookup="contractauth" menutype="normal" movetoattribute="contractrefnum" movetoresultset="invoice"/>
+											<textbox dataattribute="contractrefrev" id="1469112696468" inputmode="readonly" label="Revisión de contrato"/>
+										</sectioncol>
+										<sectioncol id="1469113142397">
+											<textbox dataattribute="enterby" id="1469112696328" inputmode="readonly"/>
+										</sectioncol>
+									</sectionrow>
+								</section>
+							</sectioncol>
+							<sectioncol id="1469112696484">
+								<section id="14691126964842" label="Fechas">
+									<sectionrow id="1469113195874">
+										<sectioncol id="14691131958742">
+											<textbox dataattribute="enterdate" id="1469112696500" label="Fecha de carga" lookup="datelookup"/>
+											<textbox dataattribute="invoicedate" id="14691126965002" label="Fecha de emisión" lookup="datelookup"/>
+											<textbox dataattribute="EN_PERIODODESDE" id="1469454030653" inputmode="required" label="Fecha desde" lookup="datelookup"/>
+											<textbox dataattribute="EN_periodo_actual" id="1474997143437" inputmode="required" label="Periodo de la factura actual" lookup="VALUELIST"/>
+											<textbox dataattribute="EN_DIAS_MES" id="1477416581350"/>
+										</sectioncol>
+										<sectioncol id="1469113202349">
+											<textbox dataattribute="duedate" id="14691126965152" lookup="datelookup"/>
+											<textbox dataattribute="paiddate" id="1469112696531" label="Fecha de próximo vencimiento (aproximada)" lookup="datelookup"/>
+											<textbox dataattribute="EN_PERIODOHASTA" id="1469454033367" inputmode="required" label="Fecha hasta" lookup="datelookup"/>
+											<textbox dataattribute="ultimo_periodo.en_periodo_actual" id="1474997149022" inputmode="readonly" label="Periodo de la factura anterior"/>
+											<textbox dataattribute="EN_HORAS_REMUNERADAS_MES" id="1477416588167"/>
+										</sectioncol>
+										<sectioncol id="1469113206732"/>
+									</sectionrow>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+				</tab>
+				<tab id="invlines" label="Líneas de factura (ENE)">
+					<section border="true" id="invlines_grid1">
+						<sectionrow id="invlines_grid1_row">
+							<sectioncol id="invlines_grid1_row_col1">
+								<section id="invlines_grid1_row_col1_sec">
+									<multiparttextbox dataattribute="invoicenum" descdataattribute="description" id="invlines_grid1_1" inputmode="readonly"/>
+									<textbox dataattribute="EN_OBSERVACIONES" id="1535117922054"/>
+									<textbox dataattribute="EN_CUENTADISTRI" id="1535117926164" inputmode="readonly" label="Nro Cta / Código CAMMESA" width="140"/>
+									<textbox dataattribute="EN_SUMINISTRO" id="1475075813513" inputmode="readonly" label="Suministro"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="invlines_grid1_row_col2">
+								<section id="invlines_grid1_row_col2_sec" label="Validación totales EDENOR / EDESUR">
+									<pushbutton id="1490985844251" label="Calcular diferencias" mxevent="EN_DIFERENCIAS" sigoption="EN_DIFERENCIAS"/>
+									<sectioncol id="EN_SECCION_VALIDACION_DATOS_DISTRIBUIDORA_COLUMNA_1">
+										<textbox dataattribute="EN_VENTAENERGIA" id="EN_CAMPO_VALIDACION_DATOS_DISTRIBUIDORA_1"/>
+										<textbox dataattribute="EN_TOTALFACTURA" id="1470332587450"/>
+									</sectioncol>
+									<sectioncol id="EN_SECCION_VALIDACION_DATOS_DISTRIBUIDORA_COLUMNA_2">
+										<textbox dataattribute="EN_DIFERENCIA_VENTAENERGIA" id="EN_CAMPO_VALIDACION_DATOS_DISTRIBUIDORA_2"/>
+										<textbox dataattribute="EN_DIFERENCIA" id="1475075738726"/>
+									</sectioncol>
+									<textbox dataattribute="EN_ENERGIA_ACTIVA" id="CAMPO_ENERGIA_ACTIVA" label="Energía Activa"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="EN_COLUMNA_VALIDACION_DATOS_CAMMESA">
+								<section id="EN_SECCION_VALIDACION_DATOS_CAMMESA" label="Validación totales Contrato">
+									<sectioncol id="EN_SECCION_VALIDACION_DATOS_CAMMESA_COLUMNA_1">
+										<textbox dataattribute="EN_SUBTOTAL_CAMMESA" id="EN_CAMPO_VALIDACION_DATOS_CAMMESA_1" label="Subtotal"/>
+										<textbox dataattribute="EN_TOT_CAMMESA_C_IVA" id="EN_CAMPO_VALIDACION_DATOS_CAMMESA_2" label="Total con IVA"/>
+										<textbox dataattribute="EN_DEM_REAL" id="EN_CAMPO_VALIDACION_DATOS_CAMMESA_3" label="Demanda"/>
+									</sectioncol>
+									<sectioncol id="EN_SECCION_VALIDACION_DATOS_CAMMESA_COLUMNA_2">
+										<textbox dataattribute="EN_DIFERENCIA_SUBTOTALCAMMESA" id="EN_CAMPO_VALIDACION_DATOS_CAMMESA_4"/>
+										<textbox dataattribute="EN_DIFERENCIA_TOTALCAMMESACIVA" id="EN_CAMPO_VALIDACION_DATOS_CAMMESA_5"/>
+										<textbox dataattribute="EN_DIFERENCIA_DEMANDAREAL" id="EN_CAMPO_VALIDACION_DATOS_CAMMESA_6"/>
+									</sectioncol>
+								</section>
+							</sectioncol>
+							<sectioncol id="invlines_grid3_row_col3">
+								<section id="invlines_grid3_row_col3_sec">
+									<textbox dataattribute="documenttype" id="invlines_grid5_1" lookup="valuelist" sigoption="READ"/>
+									<textbox dataattribute="status" id="invlines_grid1_3"/>
+									<textbox dataattribute="siteid" id="invlines_grid1_4"/>
+								</section>
+								<section id="1585163225682" label="Facturas Dolarizadas">
+									<textbox dataattribute="EN_COT_DOLAR" id="1585163252933" label="Cotización ($/Dólar)"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<section id="1469473293079">
+						<table id="1469473302033" label="Ingreso datos de potencia" listeners="1469536252796" relationship="ay_en_ingreso_potencia" sigoption="EN_INGR_MANUAL">
+							<tablebody id="1469473302049">
+								<tablecol dataattribute="serviceitems.description" id="1469473620010" inputmode="readonly" label="Servicio"/>
+								<tablecol dataattribute="EN_POTENCIA_REGISTRADA" id="1469473307759"/>
+								<tablecol dataattribute="CONTRATOREAL.NUMVALUE" id="1495462274192" inputmode="readonly" label="Potencia contratada real"/>
+								<tablecol dataattribute="EN_DIFPOTENCIA" id="1495477795580" inputmode="readonly" label="Diferencia de potencia"/>
+								<tablecol dataattribute="EN_POREXCEDIDA" id="1479301650249" inputmode="readonly" label="Porcentaje excedido"/>
+							</tablebody>
+							<tabledetails id="14694733020493"/>
+						</table>
+					</section>
+					<section id="1586959535712">
+						<table id="1586959542853" label="Ingreso datos de potencia XML" listeners="1469536252796" relationship="ay_en_ingreso_potencia" sigoption="EN_INGR_XML">
+							<tablebody id="15869595428532">
+								<tablecol dataattribute="serviceitems.description" id="1586960909108" inputmode="readonly" label="Servicio"/>
+								<tablecol dataattribute="EN_POTENCIA_REGISTRADA" id="1586960904389"/>
+								<tablecol dataattribute="CONTRATOREAL.NUMVALUE" id="15869595428533" inputmode="readonly" label="Potencia contratada real"/>
+								<tablecol dataattribute="EN_DIFPOTENCIA" id="1586960901546" inputmode="readonly" label="Diferencia de potencia"/>
+								<tablecol dataattribute="EN_POREXCEDIDA" id="1586960907343" inputmode="readonly" label="Porcentaje excedido"/>
+								<tablecol dataattribute="EN_POTENCIA_CONTR_XML" id="1586786583834" inputmode="readonly" label="Potencia contratada XML"/>
+								<tablecol dataattribute="EN_DIFPOTCONT_REAL_XML" id="1586786613960" inputmode="readonly" label="Diferencia entre Potencia contratada real y XML" sigoption="EN_DIF_XML"/>
+							</tablebody>
+							<tabledetails id="15869595428534"/>
+						</table>
+					</section>
+					<section id="1469471885295">
+						<table id="1469471908196" label="Ingreso datos energía" listeners="1469536252796" orderby="EN_MEDIDOR,EN_SERVICIO" relationship="ay_en_ingreso_energia" sigoption="EN_INGR_MANUAL">
+							<tablebody id="1469471908211">
+								<tablecol dataattribute="serviceitems.description" id="1469473075847" inputmode="readonly" label="Servicio"/>
+								<tablecol dataattribute="EN_servicio" id="1477582825755" inputmode="readonly" smartfilloff="false"/>
+								<tablecol dataattribute="EN_MEDIDOR" id="1469472154069" inputmode="readonly"/>
+								<tablecol dataattribute="EN_LECTURA_ACTUAL" id="1469472147205"/>
+								<tablecol dataattribute="EN_LECTURA_ANTERIOR" id="14694719082112"/>
+								<tablecol dataattribute="ASSET.AY_EN_FACT_MULT.NUMVALUE" id="1469472956522" inputmode="readonly" label="Factor de multiplicación"/>
+								<tablecol dataattribute="EN_CONSUMO_ENERGIA" id="1586788692241" inputmode="readonly"/>
+							</tablebody>
+							<tabledetails id="1469471908227"/>
+						</table>
+					</section>
+					<section id="1586959537697">
+						<table id="1586959549353" label="Ingreso datos energía XML" listeners="1469536252796" orderby="EN_MEDIDOR,EN_SERVICIO" relationship="ay_en_ingreso_energia" sigoption="EN_INGR_XML">
+							<tablebody id="1586959549369">
+								<tablecol dataattribute="serviceitems.description" id="15869595493692" inputmode="readonly" label="Servicio"/>
+								<tablecol dataattribute="EN_servicio" id="1586960955624" inputmode="readonly" smartfilloff="false"/>
+								<tablecol dataattribute="EN_MEDIDOR" id="1586960956906" inputmode="readonly"/>
+								<tablecol dataattribute="EN_MEDIDOR_XML" id="1586788796336" inputmode="readonly" label="Medidor XML"/>
+								<tablecol dataattribute="EN_LECTURA_ACTUAL" id="1586960957890"/>
+								<tablecol dataattribute="EN_LECTURA_ANTERIOR" id="1586960958937"/>
+								<tablecol dataattribute="ASSET.AY_EN_FACT_MULT.NUMVALUE" id="1586960959953" inputmode="readonly" label="Factor de multiplicación"/>
+								<tablecol dataattribute="EN_CONSUMO_ENERGIA" id="1586960965859" inputmode="readonly"/>
+								<tablecol dataattribute="EN_CONSUMO_ENERGIA_XML" id="1586788728460" inputmode="readonly" label="Consumo XML"/>
+								<tablecol dataattribute="EN_DIFCONSUMO_CALC_XML" id="1469472949440" inputmode="readonly" label="Diferencia entre Consumo calculado y XML" sigoption="EN_DIF_CONSUMO_XML"/>
+							</tablebody>
+							<tabledetails id="15869595493693"/>
+						</table>
+					</section>
+					<section id="EN2_SECCION_COS_TG_FI">
+						<table id="EN2_SECCION_TABLA_COS_TG_FI" label="Ingreso Cos / Tg fi" relationship="AY_EN2_INGRESO_COS/TG_FI">
+							<tablebody id="EN2_SECCION_TABLA_CUERPO_COS_TG_FI">
+								<tablecol dataattribute="SERVICEITEMS.DESCRIPTION" id="EN2_SECCION_TABLA_CUERPO_CAMPO1_COS_TG_FI" inputmode="readonly" label="Servicio"/>
+								<tablecol dataattribute="EN2_COS_TAN_FI" id="EN2_SECCION_TABLA_CUERPO_CAMPO2_COS_TG_FI" inputmode="readonly" label="Valor"/>
+							</tablebody>
+							<tabledetails id="EN2_SECCION_TABLA_CUERPO_DETA_COS_TG_FI"/>
+						</table>
+					</section>
+					<section id="1490969393684">
+						<table id="14909693936842" label="Otros sin impuesto" relationship="AY_EN_INGRESO_OTROS2">
+							<tablebody id="1490969393716">
+								<tablecol dataattribute="EN_DESCRIPCION" id="14909693937162" label="Concepto"/>
+								<tablecol dataattribute="en_factura" id="1490981724488" inputmode="readonly"/>
+								<tablecol dataattribute="en_seccion" id="1490981723926" inputmode="readonly"/>
+								<tablecol dataattribute="EN_VALOR_IMPUESTO" id="1490969393731" label="Valor"/>
+								<tablecol filterable="false" id="14909693937312" mxevent="toggledeleterow" mxevent_desc="Marcar fila para suprimir" mxevent_icon="btn_garbage.gif" sortable="false" type="event"/>
+							</tablebody>
+							<buttongroup id="14909693937313">
+								<pushbutton id="1490969393747" label="Fila nueva" mxevent="addrow"/>
+							</buttongroup>
+							<tabledetails id="14909693937472">
+								<defaultvalue dataattribute="EN_FACTURA" fromattribute="INVOICENUM" fromdatasrc="MAINRECORD" id="1490969393762"/>
+							</tabledetails>
+						</table>
+					</section>
+					<section id="1469811297952">
+						<table id="1469811308419" label="Otros con impuesto" relationship="AY_EN_INGRESO_OTROS">
+							<tablebody id="14698113084192">
+								<tablecol dataattribute="EN_DESCRIPCION" id="1469811316609" label="Concepto"/>
+								<tablecol dataattribute="EN_VALOR_IMPUESTO" id="1469811308435" label="Valor"/>
+								<tablecol filterable="false" id="1469711926429" mxevent="toggledeleterow" mxevent_desc="Marcar fila para suprimir" mxevent_icon="btn_garbage.gif" sortable="false" type="event"/>
+							</tablebody>
+							<buttongroup id="1469642288408">
+								<pushbutton id="1469642288440" label="Fila nueva" mxevent="addrow"/>
+							</buttongroup>
+							<tabledetails id="14698113084352">
+								<defaultvalue dataattribute="EN_FACTURA" fromattribute="INVOICENUM" fromdatasrc="MAINRECORD" id="1469812350085"/>
+							</tabledetails>
+						</table>
+					</section>
+					<section id="14694732930790">
+						<sectionrow id="1549476414363">
+							<sectioncol id="1549476426457">
+								<pushbutton id="1549476441551" label="Calcular Edenor/Edesur" mxevent="EN_FACT_RES" sigoption="EN_FACT_RES" width="140"/>
+							</sectioncol>
+							<sectioncol id="1549476420598">
+								<pushbutton id="1549476458020" label="Calcular GUMA" mxevent="EN_GUMA" sigoption="EN_GUMA" width="140"/>
+							</sectioncol>
+							<sectioncol id="1549476418129">
+								<pushbutton id="1549476484771" label="Calcular GUME" mxevent="EN_GUME" sigoption="EN_GUME" width="140"/>
+							</sectioncol>
+							<sectioncol id="1549476414379">
+								<pushbutton id="1549476817247" label="Calcular TERMOANDES" mxevent="EN_TERMOA" sigoption="EN_TERMOA" width="140"/>
+							</sectioncol>
+							<sectioncol id="1549477017361">
+								<pushbutton id="1585163417873" label="Calcular GENOVEVA" mxevent="EN_GENOVEVA" sigoption="EN_GENOVEVA"/>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<section id="1469536225777">
+						<table id="1469536252796" label="Resultados" ondatachange="refreshtable" orderby="EN_ORDEN" relationship="AY_EN_RESULTADOS_FACTURA">
+							<tablebody displayrowsperpage="30" id="1469536252812">
+								<tablecol dataattribute="serviceitems.description" id="1469536282764" label="Servicio"/>
+								<tablecol dataattribute="en_servicio" id="1477666221794"/>
+								<tablecol dataattribute="EN_CONSUMO" id="1469536275479"/>
+								<tablecol dataattribute="EN_TARIFA" id="1469536272577"/>
+								<tablecol dataattribute="EN_IMPORTE" id="1690585482839"/>
+								<tablecol dataattribute="EN_TIPO_CARGA_IMPORTE" id="1692212902668" label="Valor Ingresado" lookup="VALUELIST"/>
+								<tablecol dataattribute="EN_TARIFA_INGR" id="1690585485378" label="Tar. Calc."/>
+								<tablecol dataattribute="EN_DIFTAR" id="14695362528122" label="Dif: Tarifa"/>
+							</tablebody>
+							<tabledetails id="1469536252827"/>
+						</table>
+					</section>
+				</tab>
+				<tab id="main" label="Factura" sigoption="READ" type="insert">
+					<section border="true" id="main_grid3">
+						<sectionrow id="main_grid3_row">
+							<sectioncol id="main_grid3_row_col1">
+								<section id="main_grid3_row_col1_sec">
+									<multiparttextbox dataattribute="invoicenum" descdataattribute="description" id="main_grid3_1"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="main_grid3_row_col2">
+								<section id="main_grid3_row_col2_sec">
+									<textbox dataattribute="siteid" id="main_grid3_3"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="main_grid3_row_col3">
+								<section id="main_grid3_row_col3_sec">
+									<textbox dataattribute="documenttype" id="main_grid5_1" lookup="valuelist"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="main_grid3_row_col4">
+								<section id="main_grid3_row_col4_sec">
+									<textbox dataattribute="status" id="main_grid3_4"/>
+									<attachments id="doclinks"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<section id="invoice_layout">
+						<sectionrow id="invoice_layout_row1">
+							<sectioncol id="invoice_layout_row1_col1">
+								<section id="main_grid5" label="Detalles de factura">
+									<textbox applink="invoice" dataattribute="ORIGINVOICENUM" id="main_grid3_3_1" menutype="normal"/>
+									<textbox applink="invoice" dataattribute="REVINVOICENUM" id="main_grid3_1_1" inputmode="readonly" menutype="normal"/>
+									<textbox dataattribute="vendorinvoicenum" id="main_grid5_5"/>
+									<textbox dataattribute="approvalnum" id="main_grid5_6"/>
+									<textbox dataattribute="enterby" id="main_grid5_4"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="invoice_layout_row2_col2">
+								<section id="main_grid7" label="Detalles de la OC">
+									<sectionrow id="main_771">
+										<sectioncol id="main_772">
+											<section id="main_773">
+												<textbox applink="po" dataattribute="ponum" id="main_grid7_1" lookup="po" menutype="normal"/>
+												<textbox dataattribute="po.siteid" id="main_grid7_1a" inputmode="readonly"/>
+												<textbox dataattribute="po.vendor" id="main_grid7_1b" inputmode="readonly"/>
+												<textbox dataattribute="po.currencycode" id="main_grid7_13" inputmode="readonly"/>
+												<textbox dataattribute="po.purchaseagent" id="main_grid7_2" inputmode="readonly"/>
+												<textbox dataattribute="po.receipts" id="main_grid7_3" inputmode="readonly"/>
+												<textbox dataattribute="po.totalcost" id="main_grid7_4" inputmode="readonly"/>
+												<textbox dataattribute="uninvoicedtotal" id="main_grid7_5" inputmode="readonly"/>
+											</section>
+										</sectioncol>
+										<sectioncol id="main_774">
+											<section id="main_775">
+												<textbox dataattribute="contractrefnum" id="main_grid7_6" lookup="contractauth" menutype="normal" movetoattribute="contractrefnum" movetoresultset="invoice"/>
+												<textbox dataattribute="contractref.contracttype" id="main_grid7_7" inputmode="readonly"/>
+												<textbox dataattribute="contractrefrev" id="main_grid7_8" inputmode="readonly"/>
+												<textbox dataattribute="schedulenum" id="main_grid7_9" lookup="pmtschedule"/>
+											</section>
+										</sectioncol>
+									</sectionrow>
+								</section>
+							</sectioncol>
+							<sectioncol id="invoice_layout_row1_col2">
+								<section id="main_grid9" label="Fechas">
+									<textbox dataattribute="enterdate" id="main_grid9_1" lookup="datelookup"/>
+									<textbox dataattribute="invoicedate" id="main_grid9_2" lookup="datelookup"/>
+									<textbox dataattribute="glpostdate" id="main_grid9_2_1" lookup="datelookup"/>
+									<textbox dataattribute="duedate" id="main_grid9_3" lookup="datelookup"/>
+									<textbox dataattribute="paiddate" id="main_grid9_4" lookup="datelookup"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<section id="invoice_layout1">
+						<sectionrow id="invoice_layout1_row3">
+							<sectioncol id="invoice_layout1_row3_col1">
+								<section id="main_grid10" label="Remitir a">
+									<sectionrow id="main_781">
+										<sectioncol id="main_782">
+											<section id="main_783">
+												<multiparttextbox applink="company" dataattribute="vendor" descdataattribute="companies.name" descinputmode="readonly" id="main_grid10_1" inputmode="required" longdescreadonly="true" lookup="companies" menutype="normal"/>
+												<textbox dataattribute="remitaddress1" id="main_grid14_1" inputmode="readonly"/>
+												<textbox dataattribute="contact" id="main_grid14_2" lookup="compcontact"/>
+												<textbox dataattribute="paymentterms" id="main_grid14_3"/>
+												<textbox dataattribute="checkcode" id="main_grid14_4" lookup="valuelist"/>
+											</section>
+										</sectioncol>
+										<sectioncol id="main_784">
+											<section id="main_785">
+												<textbox dataattribute="checknum" id="main_grid14_5"/>
+												<textbox dataattribute="bankaccount" id="main_grid14_6"/>
+												<textbox dataattribute="banknum" id="main_grid14_7"/>
+												<textbox dataattribute="phone" id="main_grid14_8" inputmode="readonly"/>
+												<checkbox dataattribute="inclusive1" id="main_grid14_9"/>
+											</section>
+										</sectioncol>
+									</sectionrow>
+								</section>
+							</sectioncol>
+							<sectioncol id="invoice_layout_row2_col1">
+								<section id="main_grid13" label="Costes">
+									<textbox dataattribute="pretaxtotalforui" id="main_grid13_1"/>
+									<textbox dataattribute="totaltax1forui" id="main_grid13_2"/>
+									<textbox dataattribute="totalcostforui" id="main_grid13_3"/>
+									<textbox dataattribute="currencycode" id="main_grid13_4" lookup="currency"/>
+									<textbox dataattribute="basetotalcostforui" id="main_grid13_5"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+				</tab>
+				<tab id="1469454330190" label="Líneas de factura" sigoption="READ">
+					<section border="true" id="1469454330206">
+						<sectionrow id="14694543302062">
+							<sectioncol id="14694543302063">
+								<section id="14694543302064">
+									<multiparttextbox dataattribute="invoicenum" descdataattribute="description" id="1469454330221" inputmode="readonly"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="14694543302212">
+								<section id="14694543302213">
+									<textbox dataattribute="pretaxtotalforui" id="14694543302214" inputmode="readonly"/>
+									<textbox dataattribute="linetotal" id="14694543302215"/>
+									<textbox dataattribute="totalcostforui" id="1469454330237" inputmode="readonly"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="14694543302372">
+								<section id="14694543302373">
+									<textbox dataattribute="documenttype" id="14694543302374" lookup="valuelist" sigoption="READ"/>
+									<textbox dataattribute="status" id="14694543302375"/>
+									<textbox dataattribute="siteid" id="1469454330252"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<table beanclass="psdi.webclient.beans.invoice.InvoiceLineBean" id="14694543302522" label="Líneas de factura" listeners="specification_pdspectable" orderby="invoicelinenum" relationship="INVOICELINE">
+						<tablebody displayrowsperpage="20" filterable="true" id="14694543302523">
+							<tablecol filterable="false" id="14694543302524" mxevent="toggledetailstate" mxevent_desc="Mostrar detalles" sortable="false" type="event"/>
+							<tablecol dataattribute="invoicelinenum" id="1469454330268" linkedcontrolid="invlines_invoicelines_1_grid2_1"/>
+							<tablecol dataattribute="itemnum" id="14694543302682" lookup="item" menutype="item"/>
+							<tablecol dataattribute="description" id="14694543302683" lookup="longdesc"/>
+							<tablecol dataattribute="ponum" id="14694543302684" linkedcontrolid="invlines_invoicelines_1_grid2_2"/>
+							<tablecol dataattribute="positeid" id="14694543302685" linkedcontrolid="invlines_invoicelines_1_grid2_1a"/>
+							<tablecol dataattribute="qtyforui" id="1469454330284" linkedcontrolid="invlines_invoicelines_1_grid4_2" sortable="false"/>
+							<tablecol dataattribute="unitcost" id="14694543302842" linkedcontrolid="invlines_invoicelines_1_grid4_5"/>
+							<tablecol dataattribute="tax1forui" id="14694543302843" linkedcontrolid="invlines_invoicelines_1_grid4_8" sortable="false"/>
+							<tablecol dataattribute="linecostforui" id="14694543302844" linkedcontrolid="invlines_invoicelines_1_grid4_6" sortable="false"/>
+							<tablecol filterable="false" id="14694543302845" mxevent="viewrelrec" mxevent_desc="Ver registros relacionados" mxevent_icon="ac22_relatedRecords.png" sortable="false" type="event"/>
+							<tablecol filterable="false" id="1469454330299" mxevent="toggledeleterow" mxevent_desc="Marcar fila para suprimir" mxevent_icon="btn_garbage.gif" sortable="false" type="event"/>
+						</tablebody>
+						<tabledetails id="14694543302992">
+							<section id="14694543302993">
+								<sectionrow id="14694543302994">
+									<sectioncol id="1469454330315">
+										<section id="14694543303152" label="Línea de detalle">
+											<sectionrow id="14694543303153">
+												<sectioncol id="14694543303154">
+													<section id="14694543303155">
+														<textbox dataattribute="invoicelinenum" defaultfocus="true" id="14694543303156"/>
+														<combobox dataattribute="linetype" id="1469454330330"/>
+														<multiparttextbox dataattribute="itemnum" descdataattribute="description" id="14694543303302" lookup="item" menutype="item"/>
+														<textbox dataattribute="conditioncode" id="14694543303303" lookup="conditioncode"/>
+														<textbox dataattribute="enterby" id="14694543303304"/>
+														<textbox dataattribute="enterdate" id="14694543303305" lookup="datelookup"/>
+														<textbox applink="assetcat" dataattribute="CLASSSTRUCTURE.HIERARCHYPATH" id="1469454330346" inputmode="readonly" menutype="normal" ondatachange="refreshtable"/>
+														<textbox dataattribute="CLASSSTRUCTURE.description_class" id="14694543303462" inputmode="readonly" lookup="classification"/>
+													</section>
+												</sectioncol>
+												<sectioncol id="14694543303463">
+													<section id="14694543303464">
+														<textbox dataattribute="poline.manufacturer" id="1469454330362" inputmode="readonly"/>
+														<textbox dataattribute="poline.modelnum" id="14694543303622" inputmode="readonly"/>
+														<textbox dataattribute="poline.category" id="14694543303623" inputmode="readonly"/>
+														<textbox dataattribute="poline.catalogcode" id="14694543303624" inputmode="readonly"/>
+														<textbox dataattribute="commoditygroup" id="14694543303625" lookup="commoditygroup"/>
+														<textbox dataattribute="commodity" id="1469454330377" lookup="commoditygroup"/>
+													</section>
+												</sectioncol>
+												<sectioncol id="14694543303772">
+													<section id="14694543303773">
+														<checkbox dataattribute="taxexempt" id="14694543303774"/>
+														<checkbox dataattribute="receiptreqd" id="14694543303775"/>
+														<checkbox dataattribute="invoicecost.chargestore" id="1469454330393"/>
+														<checkbox dataattribute="isdistributed" id="14694543303932"/>
+														<checkbox dataattribute="prorated" id="14694543303933"/>
+														<checkbox dataattribute="prorateservice" id="14694543303934"/>
+													</section>
+												</sectioncol>
+											</sectionrow>
+										</section>
+									</sectioncol>
+								</sectionrow>
+							</section>
+							<section id="14694543303935">
+								<sectionrow id="1469454330408">
+									<sectioncol id="14694543304082">
+										<section id="14694543304083" label="Cantidad y costes">
+											<sectionrow id="14694543304084">
+												<sectioncol id="14694543304085">
+													<section id="1469454330424">
+														<textbox dataattribute="qtyforui" id="14694543304242"/>
+														<textbox dataattribute="invoiceunit" id="14694543304243" lookup="measureunit"/>
+														<textbox dataattribute="inventory.issueunit" id="14694543304244" inputmode="readonly"/>
+														<textbox dataattribute="conversion" id="14694543304245"/>
+														<textbox dataattribute="unitcost" id="1469454330440"/>
+														<textbox dataattribute="linecostforui" id="14694543304402"/>
+													</section>
+												</sectioncol>
+												<sectioncol id="14694543304403">
+													<section id="14694543304404">
+														<textbox dataattribute="tax1code" id="14694543304405" lookup="taxcode"/>
+														<textbox dataattribute="tax1forui" id="1469454330455"/>
+														<textbox dataattribute="loadedcostforui" id="14694543304552"/>
+														<textbox dataattribute="proratecost" id="14694543304553"/>
+														<textbox dataattribute="contractrefnum" id="14694543304554" inputmode="readonly"/>
+														<textbox dataattribute="contractref.contracttype" id="1469454330471" inputmode="readonly"/>
+														<textbox dataattribute="contractrefrev" id="14694543304712" inputmode="readonly"/>
+														<textbox applink="asset,ipc" dataattribute="leaseasset" id="14694543304713" lookup="invoiceleaseasset" menutype="normal"/>
+													</section>
+												</sectioncol>
+											</sectionrow>
+										</section>
+									</sectioncol>
+									<sectioncol id="14694543304714">
+										<section id="14694543304715" label="Cargar a">
+											<sectionrow id="1469454330486">
+												<sectioncol id="14694543304862">
+													<section id="14694543304863">
+														<textbox applink="storeroom,ipc" dataattribute="poline.storeloc" id="14694543304864" inputmode="readonly" lookup="storeroom" menutype="normal"/>
+														<textbox applink="wotrack" dataattribute="invoicecost.wonumnonper" id="14694543304865" lookup="workorder" menutype="workorder"/>
+														<textbox dataattribute="invoicecost.taskidnonper" id="1469454330502" lookup="wptask"/>
+														<textbox applink="location,ipc" dataattribute="invoicecost.locationnonper" id="14694543305022" lookup="locations" menutype="locations"/>
+														<textbox applink="asset,ipc" dataattribute="invoicecost.assetnumnonper" id="14694543305023" lookup="asset" menutype="assetmain"/>
+														<textbox dataattribute="invoicecost.gldebitacctnonper" id="14694543305024" lookup="glnavigator"/>
+														<textbox dataattribute="invoicecost.tositeidnonper" id="14694543305025" lookup="site"/>
+													</section>
+												</sectioncol>
+											</sectionrow>
+										</section>
+									</sectioncol>
+									<sectioncol id="1469454330518">
+										<section id="14694543305182" label="Registros relacionados">
+											<textbox dataattribute="positeid" id="14694543305183" inputmode="readonly"/>
+											<textbox applink="po" dataattribute="ponum" id="14694543305184" lookup="po" menutype="normal"/>
+											<textbox dataattribute="polinenum" id="14694543305185"/>
+										</section>
+									</sectioncol>
+								</sectionrow>
+							</section>
+						</tabledetails>
+						<buttongroup id="1469454330533">
+							<pushbutton id="14694543305332" label="Copiar líneas de OC" mxevent="COPYPOLINE" sigoption="nshowcbtns" sigoptiondatasrc="MAINRECORD"/>
+							<pushbutton id="1469454330549" label="Seleccionar transacciones de consignación" mxevent="COPYTRLINE" sigoption="showcbtns" sigoptiondatasrc="MAINRECORD"/>
+							<pushbutton id="14694543305492" label="Distribuir costes" mxevent="DISTCOSTS" sigoption="nshowcbtns" sigoptiondatasrc="MAINRECORD"/>
+							<pushbutton default="true" id="14694543305493" label="Fila nueva" mxevent="addrow" sigoption="nshowcbtns" sigoptiondatasrc="MAINRECORD"/>
+						</buttongroup>
+					</table>
+					<section datasrc="invlines_invoicelines" id="14694543305494" inputmode="default" label="Datos de tabla predeterminada" sigoption="READ">
+						<sectionrow id="14694543305495">
+							<sectioncol id="1469454330564">
+								<section id="14694543305642">
+									<textbox applink="wotrack" dataattribute="invoicecost.wonumnonper" id="14694543305643" lookup="workorder" menutype="workorder"/>
+									<textbox applink="location,ipc" dataattribute="invoicecost.locationnonper" id="14694543305644" lookup="locations" menutype="locations"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="14694543305645">
+								<section id="1469454330580">
+									<textbox applink="asset,ipc" dataattribute="invoicecost.assetnumnonper" id="14694543305802" lookup="asset" menutype="assetmain"/>
+									<textbox dataattribute="invoicecost.gldebitacctnonper" id="14694543305803" lookup="glnavigator"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+				</tab>
+				<tab id="termcond" label="Términos  y condiciones" sigoption="READ">
+					<section border="true" id="termcond_grid1">
+						<sectionrow id="termcond_grid1_row">
+							<sectioncol id="termcond_grid1_row_col1">
+								<section id="termcond_grid1_row_col1_sec">
+									<multiparttextbox dataattribute="invoicenum" descdataattribute="description" id="termcond_grid1_1" inputmode="readonly"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="termcond_grid1_row_col2">
+								<section id="termcond_grid1_row_col2_sec">
+									<textbox dataattribute="pretaxtotal" id="termcond_grid1_5" inputmode="readonly"/>
+									<textbox dataattribute="linetotal" id="termcond_grid1_7"/>
+									<textbox dataattribute="totalcostforui" id="termcond_grid1_6" inputmode="readonly"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="termcond_grid1_row_col3">
+								<section id="termcond_grid1_row_col3_sec">
+									<textbox dataattribute="documenttype" id="termcond_grid5_1" lookup="valuelist"/>
+									<textbox dataattribute="status" id="termcond_grid1_3"/>
+									<textbox dataattribute="siteid" id="termcond_grid1_4"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<table id="termcond_TermsTable" label="Términos  y condiciones" orderby="seqnum" relationship="INVOICETERM">
+						<tablebody displayrowsperpage="16" filterable="true" id="termcond_TermsTable_tablebody">
+							<tablecol filterable="false" id="termcond_TermsTable_tablebody_1" mxevent="toggledetailstate" mxevent_desc="Mostrar detalles" sortable="false" type="event"/>
+							<tablecol dataattribute="seqnum" id="termcond_TermsTable_tablebody_4"/>
+							<tablecol dataattribute="termid" id="termcond_TermsTable_tablebody_2" lookup="term"/>
+							<tablecol dataattribute="DESCRIPTION" id="termcond_TermsTable_tablebody_3" lookup="longdesc"/>
+							<tablecol filterable="false" id="termcond_TermsTable_tablebody_5" mxevent="toggledeleterow" mxevent_desc="Marcar fila para suprimir" mxevent_icon="btn_garbage.gif" sortable="false" type="event"/>
+						</tablebody>
+						<tabledetails id="termcond_TermsTable_1">
+							<section id="termcond_TermsTable_1_grid3" label="Detalles">
+								<sectionrow id="termcond_TermsTable_1_grid3_row">
+									<sectioncol id="termcond_TermsTable_1_grid3_row_col1">
+										<section id="termcond_TermsTable_1_grid3_row_col1_sec">
+											<textbox dataattribute="seqnum" id="termcond_TermsTable_1_grid3_3"/>
+											<multiparttextbox dataattribute="termid" defaultfocus="true" descdataattribute="description" id="termcond_TermsTable_1_grid3_1" lookup="term"/>
+										</section>
+									</sectioncol>
+								</sectionrow>
+							</section>
+						</tabledetails>
+						<buttongroup id="termcond_TermsTable_2">
+							<pushbutton id="termcond_TermsTable_2_1" label="Seleccionar términos" mxevent="selectterms"/>
+							<pushbutton id="termcond_TermsTable_2_2" label="Ver términos de OC" mxevent="viewpoterms"/>
+							<pushbutton default="true" id="termcond_TermsTable_2_3" label="Fila nueva" mxevent="addrow"/>
+						</buttongroup>
+					</table>
+				</tab>
+				<tab id="specification" label="Especificaciones" sigoption="READ">
+					<section border="true" id="specification_grid1">
+						<sectionrow id="specification_grid1_row1">
+							<sectioncol id="specification_grid1_row1_col1">
+								<section id="specification_grid1a">
+									<multiparttextbox dataattribute="invoicenum" descdataattribute="description" id="specification_grid1_1"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="specification_grid1_row1_col4">
+								<section id="specification_grid1d">
+									<textbox dataattribute="siteid" id="specification_grid1_5"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="specification_grid1_row1_col2">
+								<section id="specification_grid1b">
+									<textbox dataattribute="status" id="specification_grid1_3"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="specification_grid1_row1_col3">
+								<section id="specification_grid1c">
+									<textbox dataattribute="totalcost" id="specification_grid1_4" inputmode="readonly"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+					<table id="specification_pdspectable" label="Atributos" ondatachange="refreshtable" orderby="displaysequence" relationship="INVOICELINESPECCLASS">
+						<tablebody displayrowsperpage="10" filterable="true" id="specification_pdspectable_tablebody">
+							<tablecol filterable="false" id="specification_pdspectable_tablebody_1" mxevent="toggledetailstate" mxevent_desc="Mostrar detalles" sortable="false" type="event"/>
+							<tablecol dataattribute="refobjectlinenum" id="specification_pdspectable_tablebody_2" inputmode="readonly"/>
+							<tablecol dataattribute="itemnum" id="specification_pdspectable_tablebody_2a" inputmode="readonly"/>
+							<tablecol dataattribute="assetattrid" id="specification_pdspectable_tablebody_4" inputmode="readonly"/>
+							<tablecol dataattribute="assetattribute.description" id="specification_pdspectable_tablebody_5" inputmode="readonly" showfilterfield="true" sortable="false"/>
+							<tablecol dataattribute="assetattribute.datatype" id="specification_pdspectable_tablebody_6" linkedcontrolid="specification_pdspectable_2_griddetails_1" showfilterfield="true" sortable="false"/>
+							<tablecol dataattribute="alnvalue" id="specification_pdspectable_tablebody_7" linkedcontrolid="specification_pdspectable_2_griddetails_8"/>
+							<tablecol dataattribute="numvalue" id="specification_pdspectable_tablebody_8" linkedcontrolid="specification_pdspectable_2_griddetails_9"/>
+							<tablecol dataattribute="measureunitid" id="specification_pdspectable_tablebody_9" linkedcontrolid="specification_pdspectable_2_griddetails_2"/>
+							<tablecol dataattribute="tablevalue" id="specification_pdspectable_tablebody_10" linkedcontrolid="specification_pdspectable_2_griddetails_10"/>
+						</tablebody>
+						<tabledetails id="specification_pdspectable_1">
+							<section id="specification_pdspectable_1_griddetails" label="Detalles">
+								<sectionrow id="specifications_specifications_table_2_griddetails1_row">
+									<sectioncol id="specifications_specifications_table_2_griddetails1_row_col1">
+										<section id="specifications_specifications_table_2_griddetails1_row_col1_sec">
+											<textbox dataattribute="refobjectlinenum" id="specification_pdspectable_2_griddetails_6" inputmode="readonly"/>
+											<textbox dataattribute="itemnum" id="specification_pdspectable_2_griddetails_7" inputmode="readonly"/>
+											<textbox applink="assetcat" dataattribute="CLASSSTRUCTURE.HIERARCHYPATH" id="specification_pdspectable_2_griddetails_4" inputmode="readonly" menutype="normal" ondatachange="resetchildren"/>
+											<textbox dataattribute="CLASSSTRUCTURE.description_class" id="specification_pdspectable_2_griddetails_5" inputmode="readonly" lookup="classification"/>
+											<multiparttextbox dataattribute="assetattrid" descdataattribute="assetattribute.description" descinputmode="readonly" id="specification_pdspectable_2_griddetails_5a" inputmode="readonly" longdescreadonly="true"/>
+											<textbox dataattribute="assetattribute.datatype" id="specification_pdspectable_2_griddetails_1" inputmode="readonly"/>
+										</section>
+									</sectioncol>
+									<sectioncol id="specifications_specifications_table_2_griddetails1_row_col2">
+										<section id="specifications_specifications_table_2_griddetails1_row_col2_sec">
+											<textbox dataattribute="alnvalue" id="specification_pdspectable_2_griddetails_8" lookup="alndomain" smartfilloff="true"/>
+											<textbox dataattribute="numvalue" id="specification_pdspectable_2_griddetails_9" lookup="numericdomain" smartfilloff="true"/>
+											<textbox dataattribute="measureunitid" id="specification_pdspectable_2_griddetails_2" lookup="measureunit"/>
+											<textbox dataattribute="tablevalue" id="specification_pdspectable_2_griddetails_10" menutype="normal"/>
+											<textbox dataattribute="section" id="specification_pdspectable_2_griddetails_3"/>
+											<textbox dataattribute="classspec.inheritedfrom" id="specification_pdspectable_2_griddetails_11" inputmode="readonly"/>
+											<textbox dataattribute="classspec.applydownhier" id="specification_pdspectable_2_griddetails_12" inputmode="readonly"/>
+										</section>
+									</sectioncol>
+								</sectionrow>
+							</section>
+						</tabledetails>
+					</table>
+				</tab>
+			</tabgroup>
+		</clientarea>
+		<include controltoclone="pageFooter" id="INCLUDE-pageFooter"/>
+	</page>
+
+	<dialog id="viewpoterms" label="Ver términos de OC">
+		<table id="termcond_POTermsTable" label="Términos  y condiciones" orderby="ponum, seqnum" parentdatasrc="MAINRECORD" relationship="INVOICEPOTERM">
+			<tablebody displayrowsperpage="16" filterable="true" id="termcond_POTermsTable_tablebody">
+				<tablecol dataattribute="ponum" id="termcond_POTermsTable_tablebody_1" inputmode="readonly"/>
+				<tablecol dataattribute="siteid" id="termcond_POTermsTable_tablebody_1a" inputmode="readonly"/>
+				<tablecol dataattribute="termid" id="termcond_POTermsTable_tablebody_2" inputmode="readonly"/>
+				<tablecol dataattribute="description" id="termcond_POTermsTable_tablebody_3"/>
+				<tablecol dataattribute="seqnum" id="termcond_POTermsTable_tablebody_4" inputmode="readonly"/>
+			</tablebody>
+		</table>
+		<buttongroup id="viewpoterms_2">
+			<pushbutton default="true" id="viewpoterms_2_1" label="Aceptar" mxevent="dialogok"/>
+			<pushbutton id="viewpoterms_2_2" label="Cancelar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog beanclass="psdi.webclient.beans.common.ChangeStatusBean" id="list_status" label="Cambiar estado" relationship="INVOICECHANGESTATUS" savemode="ONUNLOAD">
+		<section id="list_changestatus_grid1">
+			<sectionrow id="list_changestatus_grid1_1">
+				<sectioncol id="list_changestatus_grid1_1_1">
+					<section id="list_changestatus_grid1_1_1_grid4">
+						<textbox dataattribute="Memo" id="list_changestatus_grid1_1_1_grid4_5" sigoption="MEMOABOVESTATUS"/>
+						<combobox dataattribute="status" id="list_changestatus_grid1_1_1_grid4_1"/>
+						<textbox dataattribute="statusdate" id="list_changestatus_grid1_1_1_grid4_2" lookup="datelookup"/>
+						<textbox dataattribute="Memo" id="list_changestatus_grid1_1_1_grid4_3" sigoption="MEMOBELOWSTATUS"/>
+						<checkbox dataattribute="poclose" id="list_changestatus_grid1_1_1_grid4_4"/>
+					</section>
+				</sectioncol>
+			</sectionrow>
+		</section>
+		<buttongroup id="list_changestatus_2">
+			<pushbutton default="true" id="list_changestatus_2_1" label="Aceptar" mxevent="dolongop"/>
+			<pushbutton id="list_changestatus_2_2" label="Cancelar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog beanclass="psdi.webclient.system.beans.MultiselectDataBean" id="copytrline" label="Seleccionar transacciones de consignación" parentdatasrc="MAINRECORD" relationship="constransaction">
+		<table id="copytrline_table" inputmode="readonly" label="Transacciones de consignación" selectmode="multiple">
+			<tablebody displayrowsperpage="15" filterable="true" id="copytrline_tablebody">
+				<tablecol filterable="false" id="copytrline_tablebody_1" mxevent="toggleselectrow" sortable="false" type="event"/>
+				<tablecol dataattribute="itemnum" id="copytrline_tablebody_2"/>
+				<tablecol dataattribute="description" id="copytrline_tablebody_3"/>
+				<tablecol dataattribute="invoiceqty" id="copytrline_tablebody_4"/>
+				<tablecol dataattribute="unitcost" id="copytrline_tablebody_6"/>
+				<tablecol dataattribute="commodity" id="copytrline_tablebody_7"/>
+				<tablecol dataattribute="commoditygroup" id="copytrline_tablebody_8"/>
+				<tablecol dataattribute="conditioncode" id="copytrline_tablebody_9"/>
+				<tablecol dataattribute="refwo" id="copytrline_tablebody_10"/>
+				<tablecol dataattribute="taskid" id="copytrline_tablebody_12"/>
+				<tablecol dataattribute="transtype" id="copytrline_tablebody_121"/>
+			</tablebody>
+		</table>
+		<buttongroup id="copytrline_2">
+			<pushbutton default="true" id="copytrline_2_1" label="Aceptar" mxevent="dialogok" value="createInvoiceLineForCons"/>
+			<pushbutton id="copytrline_2_2" label="Cancelar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog beanclass="psdi.webclient.beans.common.ChangeStatusBean" id="STATUS" label="Cambiar estado" relationship="INVOICECHANGESTATUS" savemode="ONLOADUNLOAD">
+		<section border="true" datasrc="MAINRECORD" id="changestatus_grid1_1_1_grid2b">
+			<multiparttextbox dataattribute="invoicenum" descdataattribute="description" descinputmode="readonly" id="changestatus_grid1_1_1_grid2b_1"/>
+			<multiparttextbox dataattribute="status" descdataattribute="statusdesc.description" descinputmode="readonly" id="changestatus_grid1_1_1_grid2b_3"/>
+		</section>
+		<section height="100" id="changestatus_grid1_1_1_grid3">
+			<textbox dataattribute="Memo" id="changestatus_grid1_1_1_grid3_5" sigoption="MEMOABOVESTATUS"/>
+			<combobox dataattribute="status" id="changestatus_grid1_1_1_grid3_1"/>
+			<textbox dataattribute="statusdate" id="changestatus_grid1_1_1_grid3_2" lookup="datelookup"/>
+			<textbox dataattribute="Memo" id="changestatus_grid1_1_1_grid3_3" sigoption="MEMOBELOWSTATUS"/>
+			<checkbox dataattribute="poclose" id="changestatus_grid1_1_1_grid3_4"/>
+		</section>
+		<buttongroup id="changestatus_2">
+			<pushbutton default="true" id="changestatus_2_1" label="Aceptar" mxevent="dolongop"/>
+			<pushbutton id="changestatus_2_2" label="Cancelar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog beanclass="psdi.webclient.system.beans.QbeBean" id="searchmore" inputmode="query" label="Más campos de búsqueda">
+		<section id="qbe_grid2">
+			<sectionrow id="qbe_grid2_1">
+				<sectioncol id="qbe_grid2_1_col1">
+					<section id="qbe_grid2_1_1_grid3_col1_sec1">
+						<multiparttextbox dataattribute="invoicenum" descdataattribute="description" descinputmode="query" id="qbe_grid2_1_1_grid3_1" inputmode="query" title="Descripción de la factura"/>
+						<textbox dataattribute="originvoicenum" id="qbe_grid2_1_1_grid4_2" inputmode="query"/>
+						<textbox dataattribute="vendorinvoicenum" id="qbe_grid2_1_1_grid4_1" inputmode="query"/>
+						<textbox dataattribute="contractrefnum" id="qbe_grid2_1_1_grid4_1a" inputmode="query"/>
+						<textbox applink="person" dataattribute="enterby" id="qbe_grid2_1_1_grid4_3" inputmode="query" lookup="person" menutype="normal"/>
+					</section>
+				</sectioncol>
+				<sectioncol id="qbe_grid2_1_col2">
+					<section id="qbe_grid2_1_col2_sec1">
+						<textbox dataattribute="documenttype" id="qbe_grid2_1_1_grid3_5" inputmode="query" lookup="valuelist"/>
+						<textbox dataattribute="status" id="qbe_grid2_1_1_grid3_4" inputmode="query" lookup="valuelist"/>
+						<textbox dataattribute="siteid" id="qbe_grid2_1_1_grid3_3" inputmode="query" lookup="site"/>
+						<textbox dataattribute="historyflag" id="qbe_grid2_1_1_grid4_4" inputmode="query"/>
+						<textbox dataattribute="positeid" id="qbe_grid2_1_1_grid3_4a" inputmode="query" lookup="site"/>
+					</section>
+				</sectioncol>
+			</sectionrow>
+		</section>
+		<section id="qbe_grid2_2">
+			<sectionrow id="qbe_grid2_2a">
+				<sectioncol id="qbe_grid2_2_col1">
+					<section id="qbe_grid2_col1_sec1" label="Detalles de la línea de factura">
+						<textbox dataattribute="invoiceline.itemnum" id="qbe_grid2_1_1_grid6_1" inputmode="query" lookup="item" menutype="item"/>
+						<textbox dataattribute="invoiceline.description" id="qbe_grid2_1_1_grid6_1a" inputmode="query"/>
+						<textbox applink="wotrack" dataattribute="invoicecost.refwo" id="qbe_grid2_1_1_grid6_4" inputmode="query" lookup="workorder" menutype="workorder"/>
+						<textbox applink="location,ipc" dataattribute="invoicecost.location" id="qbe_grid2_1_1_grid6_6" inputmode="query" lookup="locations" menutype="locations"/>
+						<textbox applink="asset,ipc" dataattribute="invoicecost.assetnum" id="qbe_grid2_1_1_grid6_3" inputmode="query" lookup="asset" menutype="assetmain"/>
+						<textbox dataattribute="invoicecost.gldebitacct" id="qbe_grid2_1_1_grid6_5" inputmode="query" lookup="glnavigator"/>
+						<textbox dataattribute="invoiceline.positeid" id="qbe_grid2_1_1_grid6_5a" inputmode="query"/>
+					</section>
+				</sectioncol>
+				<sectioncol id="qbe_grid2_2_col2">
+					<section id="qbe_grid2_col2_sec1" label="Detalles de la OC">
+						<textbox applink="po" dataattribute="ponum" id="qbe_grid2_1_1_grid5_1" inputmode="query" lookup="po" menutype="normal"/>
+						<textbox dataattribute="po.receipts" id="qbe_grid2_1_1_grid5_2" inputmode="query" lookup="valuelist"/>
+						<textbox dataattribute="po.totalcost" id="qbe_grid2_1_1_grid5_3" inputmode="query"/>
+					</section>
+				</sectioncol>
+				<sectioncol id="qbe_grid2_2_col3">
+					<section id="qbe_grid2_col3_sec1" label="Costes">
+						<textbox dataattribute="basetotalcost" id="qbe_grid2_1_1_grid8_3" inputmode="query"/>
+						<textbox dataattribute="totaltax1" id="qbe_grid2_1_1_grid8_1" inputmode="query"/>
+						<textbox dataattribute="totalcost" id="qbe_grid2_1_1_grid8_2" inputmode="query"/>
+					</section>
+				</sectioncol>
+			</sectionrow>
+		</section>
+		<section id="qbe_date_s1" label="Fechas">
+			<sectionrow id="qbe_date_r1">
+				<sectioncol id="qbe_date_r1_c1">
+					<section id="qbe_date_r1_c1_s1">
+						<sectionrow id="qbe_date_s1_r1">
+							<sectioncol id="qbe_date_s1_r1_c1">
+								<section id="qbe_date_s1_r1_c1_s1">
+									<statictext align="center" id="qbe_date_s1_r1_c1_s1_st1"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r1_c2">
+								<section id="qbe_date_s1_r1_c2_s1">
+									<statictext align="center" id="qbe_date_s1_r1_c2_s1_st1" label="Desde"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r1_c3">
+								<section id="qbe_date_s1_r1_c3_s1">
+									<statictext align="center" id="qbe_date_s1_r1_c3_s1_st1" label="Para"/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+						<sectionrow id="qbe_date_s1_r2">
+							<sectioncol id="qbe_date_s1_r2_c1">
+								<section id="qbe_date_s1_r2_c1_s1">
+									<statictext align="right" id="qbe_date_s1_r2_c1_s1_t1" label="Fecha de entrada"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r2_c2">
+								<section id="qbe_date_s1_r2_c2_s1">
+									<textbox dataattribute="enterdate" hidelabel="true" id="qbe_grid2_1_1_grid7_4" inputmode="query" lookup="datelookup" prepend="&gt;="/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r2_c3">
+								<section id="qbe_date_s1_r2_c3_s1">
+									<textbox dataattribute="enterdate" hidelabel="true" id="qbe_grid2_1_1_grid7_3" inputmode="query" lookup="datelookup" prepend="&lt;="/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+						<sectionrow id="qbe_date_s1_r3">
+							<sectioncol id="qbe_date_s1_r3_c1">
+								<section id="qbe_date_s1_r3_c1_s1">
+									<statictext align="right" id="qbe_date_s1_r3_c1_s1_t1" label="Fecha de factura"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r3_c2">
+								<section id="qbe_date_s1_r3_c2_s1">
+									<textbox dataattribute="invoicedate" hidelabel="true" id="qbe_grid2_1_1_grid7_8" inputmode="query" lookup="datelookup" prepend="&gt;="/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r3_c3">
+								<section id="qbe_date_s1_r3_c3_s1">
+									<textbox dataattribute="invoicedate" hidelabel="true" id="qbe_grid2_1_1_grid7_7" inputmode="query" lookup="datelookup" prepend="&lt;="/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+						<sectionrow id="qbe_date_s1_r4">
+							<sectioncol id="qbe_date_s1_r4_c1">
+								<section id="qbe_date_s1_r4_c1_s1">
+									<statictext align="right" id="qbe_date_s1_r4_c1_s1_t1" label="Fecha de vencimiento"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r4_c2">
+								<section id="qbe_date_s1_r4_c2_s1">
+									<textbox dataattribute="duedate" hidelabel="true" id="qbe_grid2_1_1_grid7_9" inputmode="query" lookup="datelookup" prepend="&gt;="/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r4_c3">
+								<section id="qbe_date_s1_r4_c3_s1">
+									<textbox dataattribute="duedate" hidelabel="true" id="qbe_grid2_1_1_grid7_10" inputmode="query" lookup="datelookup" prepend="&lt;="/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+						<sectionrow id="qbe_date_s1_r5">
+							<sectioncol id="qbe_date_s1_r5_c1">
+								<section id="qbe_date_s1_r5_c1_s1">
+									<statictext align="right" id="qbe_date_s1_r5_c1_s1_t1" label="Fecha de pago"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r5_c2">
+								<section id="qbe_date_s1_r5_c2_s1">
+									<textbox dataattribute="paiddate" hidelabel="true" id="qbe_grid2_1_1_grid7_11" inputmode="query" lookup="datelookup" prepend="&gt;="/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r5_c3">
+								<section id="qbe_date_s1_r5_c3_s1">
+									<textbox dataattribute="paiddate" hidelabel="true" id="qbe_grid2_1_1_grid7_12" inputmode="query" lookup="datelookup" prepend="&lt;="/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+					</section>
+				</sectioncol>
+				<sectioncol id="qbe_date_r1_c2">
+					<section id="qbe_date_r1_c2_s1">
+						<blankline id="qbe_blkline"/>
+					</section>
+				</sectioncol>
+			</sectionrow>
+		</section>
+		<buttongroup id="qbe_grid5_1_1_grid6">
+			<pushbutton default="true" id="qbe_grid5_1_1_grid6_1" label="Buscar" mxevent="dialogok"/>
+			<pushbutton id="qbe_restoreappdefault_button" label="Restaurar valores predeterminados de la aplicación" mxevent="qbeclear"/>
+			<pushbutton id="qbe_revisebutton" label="Revisar" menutype="SEARCHMOREREVISE" targetid="searchmore"/>
+			<pushbutton id="qbe_grid5_1_1_grid6_3" label="Cancelar" mxevent="qbecancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog beanclass="psdi.webclient.beans.invoice.AllocateServicesBean" id="allocserv" label="Asignar servicios" savemode="ONUNLOAD" width="800">
+		<helpgrid id="allocserv_help" innerhtml="La tabla Servicios por asignar muestra líneas de la factura que tienen seleccionada la casilla de verificación ¿Prorratear servicio? .     Para elegir las líneas que desea asignar, seleccione la casilla de verificación de cada línea. Para seleccionar todas las filas, seleccione la casilla de verificación del encabezado.      La tabla Líneas por asignar muestra las líneas de materiales y servicios de la factura cuya casilla de verificación ¿Prorratear servicio? no está seleccionada .      Seleccione las líneas que recibirán el coste desde la tabla Servicios por asignar al hacer clic en una o más filas; para seleccionar todas las filas, marque el cuadro del encabezado.         Utilice esta ficha para asignar los servicios seleccionados automáticamente y/o editar las cantidades que asignar manualmente.      La tabla Servicios por asignar muestra todos los servicios que asignar.      La tabla Líneas por asignar muestra las líneas que recibirán los costes de los servicios que se prorratearán."/>
+		<table description="Seleccionar servicios por asignar" id="servicesToAlloc" label="Servicios por asignar" orderby="invoicelinenum" parentdatasrc="MAINRECORD" relationship="PRORATEYLINES" selectmode="multiple">
+			<tablebody filterable="true" id="servicesToAlloc_body">
+				<tablecol filterable="false" id="servicesToAlloc_body_1" mxevent="toggleselectrow" sortable="false" type="event"/>
+				<tablecol dataattribute="itemnum" id="servicesToAlloc_body_2"/>
+				<tablecol dataattribute="description" id="servicesToAlloc_body_3"/>
+				<tablecol dataattribute="linecost" id="servicesToAlloc_body_4"/>
+				<tablecol dataattribute="prorated" id="servicesToAlloc_body_5"/>
+				<tablecol dataattribute="ponum" id="servicesToAlloc_body_6" inputmode="readonly"/>
+				<tablecol dataattribute="positeid" id="servicesToAlloc_body_7" inputmode="readonly"/>
+			</tablebody>
+		</table>
+		<table description="Seleccione las líneas de detalle que recibirán los costes del servicio seleccionado" id="linesToAlloc" label="Líneas por asignar" orderby="invoicelinenum" parentdatasrc="MAINRECORD" relationship="PRORATENLINES" selectmode="multiple">
+			<tablebody filterable="true" id="linesToAlloc_body">
+				<tablecol filterable="false" id="linesToAlloc_body_1" mxevent="toggleselectrow" sortable="false" type="event"/>
+				<tablecol dataattribute="invoicelinenum" id="linesToAlloc_body_2"/>
+				<tablecol dataattribute="itemnum" id="linesToAlloc_body_3"/>
+				<tablecol dataattribute="description" id="linesToAlloc_body_4"/>
+				<tablecol dataattribute="linecost" id="linesToAlloc_body_5"/>
+				<tablecol dataattribute="proratecost" id="linesToAlloc_body_6"/>
+				<tablecol dataattribute="ponum" id="linesToAlloc_body_7" inputmode="readonly"/>
+				<tablecol dataattribute="positeid" id="linesToAlloc_body_8" inputmode="readonly"/>
+			</tablebody>
+		</table>
+		<section datasrc="MAINRECORD" id="allocserv_grid1">
+			<sectionrow id="allocserv_grid1_row">
+				<sectioncol id="allocserv_grid1_row_col1">
+					<section id="allocserv_grid1_row_col1_sec">
+						<textbox dataattribute="totaltoallocate" id="allocserv_grid1_1" inputmode="readonly" label="Total de Servicios a Asignar"/>
+					</section>
+				</sectioncol>
+				<sectioncol id="iallocserv_grid1_row_col2">
+					<section id="allocserv_grid1_row_col2_sec">
+						<textbox dataattribute="totalallocated" id="allocserv_grid1_2" inputmode="readonly" label="Total de servicios asignados"/>
+					</section>
+				</sectioncol>
+			</sectionrow>
+		</section>
+		<buttongroup id="allocserv_buttongroup" show="true">
+			<pushbutton default="true" id="allocserv_buttongroup_1" label="Prorratear" mxevent="allocate"/>
+			<pushbutton id="allocserv_buttongroup_2" label="Aceptar" mxevent="dialogok"/>
+			<pushbutton id="allocserv_buttongroup_3" label="Cancelar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog beanclass="psdi.webclient.beans.invoice.DistCostsBean" id="distcosts" label="Distribuir costes" orderby="invoicelinenum" parentdatasrc="invlines_invoicelines" relationship="INVOICECOST" savemode="ONUNLOAD">
+		<helpgrid id="distcosts_help" innerhtml="Para distribuir el coste de la línea de factura actual a cuentas adicionales, haga clic en Fila nueva. Haga clic en Aceptar para guardar y volver."/>
+		<section datasrc="invlines_invoicelines" id="distcosts_grid1_1_1_grid2">
+			<sectionrow id="distcosts_grid1_1_1_grid2_row">
+				<sectioncol id="distcosts_grid1_1_1_grid2_row_col1">
+					<section id="distcosts_grid1_1_1_grid2_row_col1_sec">
+						<multiparttextbox dataattribute="itemnum" descdataattribute="description" descinputmode="readonly" id="distcosts_grid1_1_1_grid2_1" inputmode="readonly"/>
+						<textbox dataattribute="invoiceunit" id="distcosts_grid1_1_1_grid2_4" inputmode="readonly"/>
+						<textbox dataattribute="unitcost" id="distcosts_grid1_1_1_grid2_6" inputmode="readonly"/>
+					</section>
+				</sectioncol>
+				<sectioncol id="distcosts_grid1_1_1_grid2_row_col2">
+					<section id="distcosts_grid1_1_1_grid2_row_col2_sec">
+						<textbox dataattribute="qtyforui" id="distcosts_grid1_1_1_grid2_3" inputmode="readonly"/>
+						<textbox dataattribute="conversion" id="distcosts_grid1_1_1_grid2_5" inputmode="readonly"/>
+						<textbox dataattribute="linecostforui" id="distcosts_grid1_1_1_grid2_7" inputmode="readonly"/>
+					</section>
+				</sectioncol>
+			</sectionrow>
+		</section>
+		<table id="distcosts_grid1_1_1_invcostbl" label="Costes">
+			<tablebody displayrowsperpage="20" id="distcosts_grid1_1_1_invcostbl_tablebody">
+				<tablecol filterable="false" id="distcosts_grid1_1_1_invcostbl_tablebody_1" mxevent="toggledetailstate" mxevent_desc="Mostrar detalles" sortable="false" type="event"/>
+				<tablecol dataattribute="percentage" id="distcosts_grid1_1_1_invcostbl_tablebody_2" linkedcontrolid="distcosts_grid1_1_1_invcostbl_1_grid4_1" width="100"/>
+				<tablecol dataattribute="gldebitacct" id="distcosts_grid1_1_1_invcostbl_tablebody_3" linkedcontrolid="distcosts_grid1_1_1_invcostbl_1_grid4_4"/>
+				<tablecol dataattribute="unitcost" id="distcosts_grid1_1_1_invcostbl_tablebody_4" linkedcontrolid="distcosts_grid1_1_1_invcostbl_1_grid4_2"/>
+				<tablecol dataattribute="linecostforui" id="distcosts_grid1_1_1_invcostbl_tablebody_5" linkedcontrolid="distcosts_grid1_1_1_invcostbl_1_grid4_3" sortable="false"/>
+				<tablecol filterable="false" id="distcosts_grid1_1_1_invcostbl_tablebody_6" mxevent="toggledeleterow" mxevent_desc="Marcar fila para suprimir" mxevent_icon="btn_garbage.gif" sortable="false" type="event"/>
+			</tablebody>
+			<tabledetails id="distcosts_grid1_1_1_invcostbl_1">
+				<section id="distcosts_grid1_1_1_invcostbl_1_grid4" label="Detalles">
+					<textbox dataattribute="percentage" defaultfocus="true" id="distcosts_grid1_1_1_invcostbl_1_grid4_1"/>
+					<textbox dataattribute="unitcost" id="distcosts_grid1_1_1_invcostbl_1_grid4_2"/>
+					<textbox dataattribute="linecostforui" id="distcosts_grid1_1_1_invcostbl_1_grid4_3"/>
+					<textbox dataattribute="gldebitacct" id="distcosts_grid1_1_1_invcostbl_1_grid4_4" lookup="glnavigator"/>
+				</section>
+			</tabledetails>
+			<buttongroup id="distcosts_grid1_1_1_invcostbl_2">
+				<pushbutton default="true" id="distcosts_grid1_1_1_invcostbl_2_1" label="Fila nueva" mxevent="addrow"/>
+			</buttongroup>
+		</table>
+		<buttongroup id="distcosts_2">
+			<pushbutton default="true" id="distcosts_2_1" label="Aceptar" mxevent="dialogok"/>
+			<pushbutton id="distcosts_2_2" label="Cancelar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog id="viewrelrec" label="Ver registros relacionados">
+		<tabgroup id="viewrelrec_tabs">
+			<tab default="true" id="view_related_po_tab" label="OC">
+				<table id="view_related_po_tab_table" label="OC" relationship="POLINEVIEW">
+					<tablebody displayrowsperpage="10" filterable="true" id="view_related_po_tab_table_main">
+						<tablecol dataattribute="invoiceline.invoicelinenum" id="view_related_po_tab_table_tablebody_30" inputmode="readonly" label="Línea de factura"/>
+						<tablecol dataattribute="ponum" id="view_related_po_tab_table_tablebody_3" sortable="true">
+							<textbox applink="po" id="view_related_po_tab_table_tablebody_31" inputmode="readonly" menutype="normal"/>
+						</tablecol>
+						<tablecol dataattribute="revisionnum" id="view_related_po_tab_table_tablebody_91" inputmode="readonly"/>
+						<tablecol dataattribute="polinenum" id="view_related_po_tab_table_tablebody_9" inputmode="readonly"/>
+						<tablecol dataattribute="itemnum" id="view_related_po_tab_table_tablebody_11b" inputmode="readonly"/>
+						<tablecol dataattribute="description" id="view_related_po_tab_table_tablebody_11a" inputmode="readonly"/>
+						<tablecol dataattribute="porev.status" id="view_related_po_tab_table_tablebody_11" inputmode="readonly"/>
+						<tablecol dataattribute="orderqty" id="view_related_po_tab_table_tablebody_11c" inputmode="readonly"/>
+						<tablecol dataattribute="orderunit" id="view_related_po_tab_table_tablebody_11d" inputmode="readonly"/>
+						<tablecol dataattribute="linecost" id="view_related_po_tab_table_tablebody_11e" inputmode="readonly"/>
+						<tablecol dataattribute="siteid" id="view_related_po_tab_table_tablebody_5" inputmode="readonly"/>
+						<tablecol dataattribute="REQUESTEDBY" id="view_related_po_tab_table_tablebody_10" inputmode="readonly"/>
+					</tablebody>
+				</table>
+			</tab>
+			<tab id="view_related_pr_tab" label="SC">
+				<table id="view_related_pr_tab_table" label="SC" relationship="PRLINEVIEW">
+					<tablebody displayrowsperpage="10" filterable="true" id="view_related_pr_tab_table_main">
+						<tablecol dataattribute="invoiceline.invoicelinenum" id="view_related_pr_tab_table_tablebody_30" inputmode="readonly" label="Línea de factura"/>
+						<tablecol dataattribute="prnum" id="view_related_pr_tab_table_tablebody_3" sortable="true">
+							<textbox applink="pr" id="view_related_pr_tab_table_tablebody_31" inputmode="readonly" menutype="normal"/>
+						</tablecol>
+						<tablecol dataattribute="prlinenum" id="view_related_pr_tab_table_tablebody_9" inputmode="readonly"/>
+						<tablecol dataattribute="itemnum" id="view_related_pr_tab_table_tablebody_11b" inputmode="readonly"/>
+						<tablecol dataattribute="description" id="view_related_pr_tab_table_tablebody_11a" inputmode="readonly"/>
+						<tablecol dataattribute="orderqty" id="view_related_pr_tab_table_tablebody_11c" inputmode="readonly"/>
+						<tablecol dataattribute="orderunit" id="view_related_pr_tab_table_tablebody_11d" inputmode="readonly"/>
+						<tablecol dataattribute="linecost" id="view_related_pr_tab_table_tablebody_11e" inputmode="readonly"/>
+						<tablecol dataattribute="pr.status" id="view_related_pr_tab_table_tablebody_11" inputmode="readonly"/>
+						<tablecol dataattribute="siteid" id="view_related_pr_tab_table_tablebody_5" inputmode="readonly"/>
+						<tablecol dataattribute="REQUESTEDBY" id="view_related_pr_tab_table_tablebody_10" inputmode="readonly"/>
+					</tablebody>
+				</table>
+			</tab>
+			<tab id="view_related_rfq_tab" label="SDC">
+				<table id="view_related_rfq_tab_table" label="SDC" relationship="RFQLINEVIEW">
+					<tablebody displayrowsperpage="10" filterable="true" id="view_related_rfq_tab_table_main">
+						<tablecol dataattribute="prline.invoiceline.invoicelinenum" id="view_related_rfq_tab_table_tablebody_30" inputmode="readonly" label="Línea de factura"/>
+						<tablecol dataattribute="rfqnum" id="view_related_rfq_tab_table_tablebody_3" sortable="true">
+							<textbox applink="rfq" id="view_related_rfq_tab_table_tablebody_31" inputmode="readonly" menutype="normal"/>
+						</tablecol>
+						<tablecol dataattribute="rfqlinenum" id="view_related_rfq_tab_table_tablebody_9"/>
+						<tablecol dataattribute="rfq.description" id="view_related_rfq_tab_table_tablebody_11a" inputmode="readonly"/>
+						<tablecol dataattribute="rfq.status" id="view_related_rfq_tab_table_tablebody_11" inputmode="readonly"/>
+						<tablecol dataattribute="siteid" id="view_related_rfq_tab_table_tablebody_5" inputmode="readonly"/>
+						<tablecol dataattribute="vendor" id="view_related_rfq_tab_table_tablebody_5a" inputmode="readonly"/>
+						<tablecol dataattribute="requestedby" id="view_related_rfq_tab_table_tablebody_10" inputmode="readonly"/>
+					</tablebody>
+				</table>
+			</tab>
+			<tab id="view_related_receipts_tab" label="Recepción de materiales">
+				<table id="view_related_receipts_tab_table" label="Recepción de materiales" relationship="MATRECTRANSVIEW">
+					<tablebody displayrowsperpage="10" filterable="true" id="view_related_receipts__tab_table_main">
+						<tablecol dataattribute="INVOICELINEVIEW.invoicelinenum" id="view_related_receipts__tab_table_tablebody_30" inputmode="readonly" label="Línea de factura"/>
+						<tablecol dataattribute="itemnum" id="view_related_receipts__tab_table_tablebody_30a" inputmode="readonly"/>
+						<tablecol dataattribute="poline.description" id="view_related_receipts__tab_table_tablebody_30b" inputmode="readonly"/>
+						<tablecol dataattribute="RECEIPTQUANTITY" id="view_related_receipts__tab_table_tablebody_3" inputmode="readonly"/>
+						<tablecol dataattribute="RECEIVEDUNIT" id="view_related_receipts__tab_table_tablebody_9" inputmode="readonly"/>
+						<tablecol dataattribute="ISSUETYPE" id="view_related_receipts__tab_table_tablebody_11a" inputmode="readonly" label="Tipo"/>
+						<tablecol dataattribute="POREV.RECEIPTS" id="view_related_receipts__tab_table_tablebody_11b" inputmode="readonly" label="Estado de recepción"/>
+						<tablecol dataattribute="status" id="view_related_receipts__tab_table_tablebody_11" inputmode="readonly"/>
+						<tablecol dataattribute="siteid" id="view_related_receipts__tab_table_tablebody_5" inputmode="readonly"/>
+						<tablecol dataattribute="transdate" id="view_related_receipts__tab_table_tablebody_10" inputmode="readonly"/>
+						<tablecol dataattribute="linecost" id="view_related_receipts__tab_table_tablebody_101" inputmode="readonly"/>
+						<tablecol dataattribute="GLDEBITACCT" id="view_related_receipts__tab_table_tablebody_10a" inputmode="readonly"/>
+						<tablecol dataattribute="GLCREDITACCT" id="view_related_receipts__tab_table_tablebody_10b" inputmode="readonly"/>
+						<tablecol dataattribute="enterby" id="view_related_receipts__tab_table_tablebody_10c" inputmode="readonly"/>
+					</tablebody>
+				</table>
+			</tab>
+			<tab id="view_related_receipts1_tab" label="Recepción de servicios">
+				<table beanclass="psdi.webclient.beans.invoice.ViewRelServiceBean" id="view_related_receipts1_tab_table" label="Recepción de servicios" relationship="SERVRECTRANSVIEW">
+					<tablebody displayrowsperpage="10" filterable="true" id="view_related_receipts1__tab_table_main">
+						<tablecol dataattribute="INVOICELINEVIEW.invoicelinenum" id="view_related_receipts1__tab_table_tablebody_30" inputmode="readonly" label="Línea de factura"/>
+						<tablecol dataattribute="itemnum" id="view_related_receipts1__tab_table_tablebody_30a" inputmode="readonly"/>
+						<tablecol dataattribute="poline.description" id="view_related_receipts1__tab_table_tablebody_30b" inputmode="readonly"/>
+						<tablecol dataattribute="QTYTORECEIVE" id="view_related_receipts1__tab_table_tablebody_3" inputmode="readonly"/>
+						<tablecol dataattribute="ISSUETYPE" id="view_related_receipts1__tab_table_tablebody_11a" inputmode="readonly" label="Tipo"/>
+						<tablecol dataattribute="POREV.RECEIPTS" id="view_related_receipts1__tab_table_tablebody_11b" inputmode="readonly" label="Estado de recepción"/>
+						<tablecol dataattribute="status" id="view_related_receipts1__tab_table_tablebody_11" inputmode="readonly"/>
+						<tablecol dataattribute="siteid" id="view_related_receipts1__tab_table_tablebody_5" inputmode="readonly"/>
+						<tablecol dataattribute="transdate" id="view_related_receipts1__tab_table_tablebody_10" inputmode="readonly"/>
+						<tablecol dataattribute="linecost" id="view_related_receipts1__tab_table_tablebody_101" inputmode="readonly"/>
+						<tablecol dataattribute="GLDEBITACCT" id="view_related_receipts1__tab_table_tablebody_10a" inputmode="readonly"/>
+						<tablecol dataattribute="GLCREDITACCT" id="view_related_receipts1__tab_table_tablebody_10b" inputmode="readonly"/>
+						<tablecol dataattribute="enterby" id="view_related_receipts1__tab_table_tablebody_10d" inputmode="readonly" label="Introducido por"/>
+					</tablebody>
+				</table>
+			</tab>
+			<tab id="view_related_invoicetrans_tab" label="Transacciones de factura">
+				<table id="view_related_invoicetr_tab_table" label="Transacciones de factura" relationship="INVOICETRANS">
+					<tablebody displayrowsperpage="10" filterable="true" id="view_related_invoicetr__tab_table_main">
+						<tablecol dataattribute="invoicelinenum" id="view_related_invoicetr__tab_table_tablebody_9" inputmode="readonly"/>
+						<tablecol dataattribute="invoice.documenttype" id="view_related_invoicetr__tab_table_tablebody_11a" inputmode="readonly"/>
+						<tablecol dataattribute="actualdate" id="view_related_invoicetr__tab_table_tablebody_11b" inputmode="readonly"/>
+						<tablecol dataattribute="siteid" id="view_related_invoicetr__tab_table_tablebody_5" inputmode="readonly"/>
+						<tablecol dataattribute="invoiceline.ponum" id="view_related_invoicetr__tab_table_tablebody_51" inputmode="readonly"/>
+						<tablecol dataattribute="invoiceline.vendor" id="view_related_invoicetr__tab_table_tablebodyww_51" inputmode="readonly"/>
+						<tablecol dataattribute="vendor" id="view_related_invoicetr__tab_table_tablebody_11" inputmode="readonly"/>
+						<tablecol dataattribute="transtype" id="view_related_invoicetr__tab_table_tablebody_10" inputmode="readonly"/>
+						<tablecol dataattribute="linecost" id="view_related_invoicetr__tab_table_tablebody_10b" inputmode="readonly"/>
+						<tablecol dataattribute="gldebitacct" id="view_related_invoicetr__tab_table_tablebody_10c" inputmode="readonly"/>
+						<tablecol dataattribute="glcreditacct" id="view_related_invoicetr__tab_table_tablebody_10d" inputmode="readonly"/>
+					</tablebody>
+				</table>
+			</tab>
+			<tab id="view_related_cnt_tab" label="Referencias de contrato">
+				<table id="view_related_cnt_tab_table" label="Contratos" relationship="CONTRACTREFLINE">
+					<tablebody displayrowsperpage="10" filterable="true" id="view_related_cnt_tab_table_main">
+						<tablecol dataattribute="contractnum" id="view_related_cnt_tab_table_tablebody_3" sortable="true">
+							<textbox applink="contpurch" id="view_related_cnt_tab_table_tablebody_31" inputmode="readonly" menutype="normal"/>
+						</tablecol>
+						<tablecol dataattribute="contractlinenum" id="view_related_cnt_tab_table_tablebody_9" inputmode="readonly"/>
+						<tablecol dataattribute="contract.revisionnum" id="view_related_icnt_tab_table_tablebody_11a" inputmode="readonly"/>
+						<tablecol dataattribute="contract.contracttype" id="view_related_cnt_tab_table_tablebody_11" inputmode="readonly"/>
+						<tablecol dataattribute="orderqty" id="view_related_cnt_tab_table_tablebody_5" inputmode="readonly"/>
+						<tablecol dataattribute="orderunit" id="view_related_cntv_tab_table_tablebody_10" inputmode="readonly"/>
+						<tablecol dataattribute="unitcost" id="view_related_cnt_tab_table_tablebody_51" inputmode="readonly"/>
+						<tablecol dataattribute="linecost" id="view_related_cnt_tab_table_tablebody_101" inputmode="readonly"/>
+					</tablebody>
+				</table>
+			</tab>
+		</tabgroup>
+		<buttongroup id="viewRelRec_btn">
+			<pushbutton default="true" id="viewRelRec_btn_OK" label="Aceptar" mxevent="dialogclose"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog id="stathist" label="Ver historial" relationship="INVOICESTATUS">
+		<table id="stathist_stathist_history_Statustbl" label="Historial de estado" width="950">
+			<tablebody displayrowsperpage="20" filterable="true" id="stathist_stathist_history_Statustbl_tablebody">
+				<tablecol dataattribute="status" id="stathist_stathist_history_Statustbl_tablebody_1"/>
+				<tablecol dataattribute="vendor" id="stathist_stathist_history_Statustbl_tablebody_2"/>
+				<tablecol dataattribute="changedate" id="stathist_stathist_history_Statustbl_tablebody_3"/>
+				<tablecol dataattribute="changeby" id="stathist_stathist_history_Statustbl_tablebody_4"/>
+				<tablecol dataattribute="memo" id="stathist_stathist_history_Statustbl_tablebody_5"/>
+			</tablebody>
+		</table>
+		<buttongroup id="stathist_2">
+			<pushbutton default="true" id="stathist_2_1" label="Aceptar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog beanclass="psdi.webclient.beans.invoice.CopyPOLineBean" id="copypoline" label="Copiar líneas de OC" parentdatasrc="invlines_invoicelines">
+		<section beanclass="psdi.webclient.beans.invoice.CopyPOLineBean" border="true" id="selectrecords_showall" parentdatasrc="MAINRECORD" relationship="CPYPOLINE">
+			<radiobuttongroup dataattribute="viewuninv" hidelabel="true" id="selectrecords_radio" label="." synchronous="true">
+				<radiobutton id="selectrecords_radio_1" label="Ver todas las líneas" value="all"/>
+				<radiobutton id="selectrecords_radio_2" label="Ver todas las líneas que no se han facturado" value="uninv"/>
+			</radiobuttongroup>
+		</section>
+		<tabgroup id="copypoline_copypoline">
+			<tab default="true" id="copypoline_copypoline_polines" label="Líneas de OC">
+				<table beanclass="psdi.webclient.beans.invoice.CopyPOLinePOLineBean" id="copypolinebean" inputmode="readonly" label="Líneas de OC" orderby="ponum, polinenum" parentdatasrc="MAINRECORD" relationship="POLINE" selectmode="multiple">
+					<tablebody displayrowsperpage="15" filterable="true" id="copypoline_copypoline_polines_polinestable_tablebody">
+						<tablecol filterable="false" id="copypoline_copypoline_polines_polinestable_tablebody_1" mxevent="toggleselectrow" sortable="false" type="event"/>
+						<tablecol dataattribute="ponum" id="copypoline_copypoline_polines_polinestable_tablebody_2"/>
+						<tablecol dataattribute="polinenum" id="copypoline_copypoline_polines_polinestable_tablebody_3"/>
+						<tablecol dataattribute="itemnum" id="copypoline_copypoline_polines_polinestable_tablebody_31"/>
+						<tablecol dataattribute="description" id="copypoline_copypoline_polines_polinestable_tablebody_4"/>
+						<tablecol dataattribute="orderqty" id="copypoline_copypoline_polines_polinestable_tablebody_5"/>
+						<tablecol dataattribute="uninvoicedquantity" id="copypoline_copypoline_polines_polinestable_tablebody_6" showfilterfield="true" sortable="false"/>
+						<tablecol dataattribute="linecost" id="copypoline_copypoline_polines_polinestable_tablebody_7"/>
+						<tablecol dataattribute="uninvoicedcost" id="copypoline_copypoline_polines_polinestable_tablebody_8" sortable="false"/>
+						<tablecol dataattribute="siteid" id="copypoline_copypoline_polines_polinestable_tablebody_8a"/>
+					</tablebody>
+				</table>
+			</tab>
+			<tab id="copypoline_copypoline_materials" label="Materiales">
+				<table beanclass="psdi.webclient.beans.invoice.CopyPOLineMaterialsBean" id="materialsbean" inputmode="readonly" label="Materiales" orderby="ponum, polinenum" parentdatasrc="MAINRECORD" relationship="POMATRECTRANS" selectmode="multiple">
+					<tablebody displayrowsperpage="15" filterable="true" id="copypoline_copypoline_materials_materialstable_tablebody">
+						<tablecol filterable="false" id="copypoline_copypoline_materials_materialstable_tablebody_1" mxevent="toggleselectrow" sortable="false" type="event"/>
+						<tablecol dataattribute="itemnum" id="copypoline_copypoline_materials_materialstable_tablebody_2"/>
+						<tablecol dataattribute="description" id="copypoline_copypoline_materials_materialstable_tablebody_3"/>
+						<tablecol dataattribute="receiptquantity" id="copypoline_copypoline_materials_materialstable_tablebody_4" sortable="false"/>
+						<tablecol dataattribute="uninvoicedquantity" id="copypoline_copypoline_materials_materialstable_tablebody_5" showfilterfield="true" sortable="false"/>
+						<tablecol dataattribute="invoicematunitcost" id="copypoline_copypoline_materials_materialstable_tablebody_6" sortable="false"/>
+						<tablecol dataattribute="currencylinecost" id="copypoline_copypoline_materials_materialstable_tablebody_7"/>
+						<tablecol dataattribute="uninvoicedcost" id="copypoline_copypoline_materials_materialstable_tablebody_8" sortable="false"/>
+						<tablecol dataattribute="ponum" id="copypoline_copypoline_materials_materialstable_tablebody_9"/>
+						<tablecol dataattribute="polinenum" id="copypoline_copypoline_materials_materialstable_tablebody_10"/>
+						<tablecol dataattribute="positeid" id="copypoline_copypoline_materials_materialstable_tablebody_10a"/>
+					</tablebody>
+				</table>
+			</tab>
+			<tab id="copypoline_copypoline_services" label="Servicios">
+				<table beanclass="psdi.webclient.beans.invoice.CopyPOLineServicesBean" id="servicesbean" inputmode="readonly" label="Servicios" orderby="ponum, polinenum" parentdatasrc="MAINRECORD" relationship="POSERVRECTRANS" selectmode="multiple">
+					<tablebody displayrowsperpage="15" filterable="true" id="copypoline_copypoline_services_servicestable_tablebody">
+						<tablecol filterable="false" id="copypoline_copypoline_services_servicestable_tablebody_1" mxevent="toggleselectrow" sortable="false" type="event"/>
+						<tablecol dataattribute="itemnum" id="copypoline_copypoline_services_servicestable_tablebody_11"/>
+						<tablecol dataattribute="description" id="copypoline_copypoline_services_servicestable_tablebody_2"/>
+						<tablecol dataattribute="quantity" id="copypoline_copypoline_services_servicestable_tablebody_3"/>
+						<tablecol dataattribute="uninvoicedquantity" id="copypoline_copypoline_services_servicestable_tablebody_4" showfilterfield="true" sortable="false"/>
+						<tablecol dataattribute="currencyunitcost" id="copypoline_copypoline_services_servicestable_tablebody_5" sortable="false"/>
+						<tablecol dataattribute="currencylinecost" id="copypoline_copypoline_services_servicestable_tablebody_6"/>
+						<tablecol dataattribute="uninvoicedcost" id="copypoline_copypoline_services_servicestable_tablebody_7" sortable="false"/>
+						<tablecol dataattribute="ponum" id="copypoline_copypoline_services_servicestable_tablebody_8"/>
+						<tablecol dataattribute="polinenum" id="copypoline_copypoline_services_servicestable_tablebody_9"/>
+						<tablecol dataattribute="positeid" id="copypoline_copypoline_services_servicestable_tablebody_9a"/>
+					</tablebody>
+				</table>
+			</tab>
+		</tabgroup>
+		<buttongroup id="copypoline_2">
+			<pushbutton default="true" id="copypoline_2_1" label="Aceptar" mxevent="dialogok"/>
+			<pushbutton id="copypoline_2_2" label="Cancelar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog height="380" id="changestatusconfirm" label="Confirmación de cambio de estado" width="510">
+		<buttongroup id="changestatusconfirm_2">
+			<pushbutton default="true" id="changestatusconfirm_2_1" label="Aceptar" mxevent="dialogok"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog id="revinvoice" label="Crear factura rectificada" relationship="REVINVINPUT">
+		<helpgrid id="createri_help" innerhtml="Especificar un número de factura o generar uno haciendo clic en Autonumerar. Haga clic en Aceptar para crear una factura de reserva."/>
+		<section id="createri_grid1a_1_1_grid1">
+			<multiparttextbox dataattribute="invoicenum" descdataattribute="description" id="createri_grid1a_1_1_grid1_1"/>
+			<textbox dataattribute="revreason" id="createri_grid1a_1_1_grid1_2"/>
+			<textbox dataattribute="glpostdate" id="createri_grid1a_1_1_grid1_3" lookup="datelookup"/>
+			<combobox dataattribute="status" id="createri_grid1a_1_1_grid1_4"/>
+		</section>
+		<buttongroup id="createpo_2">
+			<pushbutton id="createpo_2_1" label="Autonumerar" mxevent="setInvoiceAutoKey"/>
+			<pushbutton default="true" id="createpo_2_2" label="Aceptar" mxevent="dialogok"/>
+			<pushbutton id="createpo_2_3" label="Cancelar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog beanclass="psdi.webclient.system.beans.ViewBookmarksBean" id="searchbook" label="Mis marcadores" mboname="INVOICE">
+		<table id="bookmarks_table" inputmode="readonly" label="Facturas" selectmode="single">
+			<tablebody displayrowsperpage="20" filterable="true" id="bookmarks_table_tablebody">
+				<tablecol dataattribute="invoicenum" id="bookmarks_tablebody_1" mxevent="selectrecord" type="link"/>
+				<tablecol dataattribute="description" id="bookmarks_table_tablebody_2"/>
+				<tablecol filterable="false" id="bookmarks_table_tablebody_delete" mxevent="instantdelete" mxevent_desc="Suprimir" mxevent_icon="btn_delete.gif" sortable="false" type="event"/>
+			</tablebody>
+		</table>
+		<buttongroup id="bookmarks_2">
+			<pushbutton default="true" id="bookmarks_2_1" label="Aceptar" mxevent="dialogok"/>
+		</buttongroup>
+	</dialog>
+
+	<dialog id="CHANGEVEND" label="Cambiar distribuidor de la OC">
+		<table beanclass="psdi.webclient.beans.invoice.ChangeVendorBean" id="changevend_grid1_1_1_ChangeVendorTable" label="Distribuidores" relationship="COMPANIESORG">
+			<tablebody displayrowsperpage="20" filterable="true" id="changevend_grid1_1_1_ChangeVendorTable_tablebody">
+				<tablecol dataattribute="company" id="changevend_grid1_1_1_ChangeVendorTable_tablebody_2" mxevent="selectrecord" mxevent_desc="Ir a %1" sortable="false" type="link"/>
+				<tablecol dataattribute="name" id="changevend_grid1_1_1_ChangeVendorTable_tablebody_3" mxevent="selectrecord" mxevent_desc="Ir a %1" sortable="false" type="link"/>
+				<tablecol dataattribute="type" id="changevend_grid1_1_1_ChangeVendorTable_tablebody_4" mxevent="selectrecord" mxevent_desc="Ir a %1" sortable="false" type="link"/>
+			</tablebody>
+		</table>
+		<buttongroup id="changevend_5">
+			<pushbutton default="true" id="changevend_5_2" label="Cancelar" mxevent="dialogcancel"/>
+		</buttongroup>
+	</dialog>
+	<configurationblock id="datastore_configurationblock">
+	</configurationblock>
+</presentation>
