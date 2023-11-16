@@ -989,6 +989,25 @@
 								</section>
 							</sectioncol>
 						</sectionrow>
+						<!--Agrego sd 336429 -->
+						<sectionrow id="qbe_date_s1_r6">
+							<sectioncol id="qbe_date_s1_r6_c1">
+								<section id="qbe_date_s1_r6_c1_s1">
+									<statictext align="right" id="qbe_date_s1_r6_c1_s1_t1" label="Fecha cambio de estado"/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r6_c2">
+								<section id="qbe_date_s1_r6_c2_s1">
+									<textbox dataattribute="changedate" hidelabel="true" id="qbe_grid2_1_1_grid7_13" inputmode="query" lookup="datelookup" prepend="&gt;="/>
+								</section>
+							</sectioncol>
+							<sectioncol id="qbe_date_s1_r6_c3">
+								<section id="qbe_date_s1_r6_c3_s1">
+									<textbox dataattribute="changedate" hidelabel="true" id="qbe_grid2_1_1_grid7_14" inputmode="query" lookup="datelookup" prepend="&lt;="/>
+								</section>
+							</sectioncol>
+						</sectionrow>
+						<!--fin sd 336429 -->
 					</section>
 				</sectioncol>
 				<sectioncol id="qbe_date_r1_c2">
